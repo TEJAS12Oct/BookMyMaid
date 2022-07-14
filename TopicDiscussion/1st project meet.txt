@@ -1,0 +1,38 @@
+11th July 2022
+Minutes of meeting (Project 1St meet)
+Primary Discussion
+
+#Project Topic Discussion
+1.1st Suggetion Dr appointment System 
+  *Flow is not expected at first, oral description is expected
+  *Non IT person should understand what you are trying to deliver by this
+  *Depth analysis is required
+  *dr constraints should be taken care of e.g. Availabity of dr,his emergency,cancellation etc
+  *Slot management is required
+  *Dr will not take care of this,assistant is required
+  *Travel time between two bookings should be taken care of
+  *More Constarints
+
+2.2nd Suggestion Service Providers
+  * Stick to only one service as those all are just instances of service class
+  *Take only one and execute all its constraints 
+  * Add All availabe constraint
+    e.g. Holidays,availability,police verification,charges,quality of work,
+     Bonus, Extra Work Charges,Types of works she can do,
+
+3.3rd Suggestion Vegetable vendor   
+  * Uniquness in project
+  * Quality and Quantity assurance
+  * Quantity and material management
+  * Flaws in inventory
+  * Order placing and available material should not mismatch
+  * Two module will be there  
+    a) Farmer to vendor
+    b) Vendor to user
+
+Activities Expected:
+1. Summary(8to10 lines,non tech person should understand)
+2. Features(min 5 with 2 line description)
+   what is there in your website??
+3. Git hub repo with document folder having all documents
+4.
