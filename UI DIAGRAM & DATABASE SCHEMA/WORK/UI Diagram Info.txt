@@ -1,0 +1,7 @@
+Wire-Frame UI Diagram
+
+1. Home Page - (Home, About us, FAQ, Why us, What We Offer, Contact us, Login)
+
+2. Login{SignIN [Forgot Password], SignUP} -(Maid, Admin,User)
+
+3. User Page - User Dashboard(1. Book Maid(Maid Profile-[Add])) 
