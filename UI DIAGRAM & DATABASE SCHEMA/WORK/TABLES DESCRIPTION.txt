@@ -1,0 +1,90 @@
+DATABASE DESCRIPTION BookMyMaid
+
+1.  desc admin;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| ID       | int         | NO   | PRI | NULL    | auto_increment |
+| UserName | varchar(30) | NO   |     | NULL    |                |
+| PassWord | varchar(30) | NO   |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+
+2.  desc maid;
++---------------------------------+--------------+------+-----+---------+----------------+
+| Field                           | Type         | Null | Key | Default | Extra          |
++---------------------------------+--------------+------+-----+---------+----------------+
+| ID                              | int          | NO   | PRI | NULL    | auto_increment |
+| Name                            | varchar(30)  | NO   |     | NULL    |                |
+| UserName                        | varchar(30)  | NO   |     | NULL    |                |
+| PassWord                        | varchar(30)  | NO   |     | NULL    |                |
+| Gender                          | varchar(10)  | NO   |     | NULL    |                |
+| DOB                             | varchar(30)  | NO   |     | NULL    |                |
+| Mobile_No                       | varchar(30)  | NO   |     | NULL    |                |
+| Email_Id                        | varchar(30)  | NO   |     | NULL    |                |
+| Address                         | varchar(100) | NO   |     | NULL    |                |
+| Adhar_Card                      | varchar(30)  | NO   |     | NULL    |                |
+| Police_Verification_Certificate | varchar(30)  | NO   |     | NULL    |                |
+| Experience                      | int          | YES  |     | NULL    |                |
+| Rating                          | varchar(30)  | YES  |     | NULL    |                |
+| Images                          | varchar(70)  | YES  |     | NULL    |                |
++---------------------------------+--------------+------+-----+---------+----------------+
+
+3.   desc user;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| ID         | int          | NO   | PRI | NULL    | auto_increment |
+| Name       | varchar(30)  | NO   |     | NULL    |                |
+| UserName   | varchar(30)  | NO   |     | NULL    |                |
+| PassWord   | varchar(30)  | NO   |     | NULL    |                |
+| Gender     | varchar(10)  | NO   |     | NULL    |                |
+| Mobile_No  | varchar(30)  | NO   |     | NULL    |                |
+| Email_Id   | varchar(30)  | NO   |     | NULL    |                |
+| Address    | varchar(100) | NO   |     | NULL    |                |
+| Adhar_Card | varchar(30)  | NO   |     | NULL    |                |
+| Images     | varchar(70)  | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+
+4. desc services;
++----------------+-------------+------+-----+---------+----------------+
+| Field          | Type        | Null | Key | Default | Extra          |
++----------------+-------------+------+-----+---------+----------------+
+| ID             | int         | NO   | PRI | NULL    | auto_increment |
+| Service        | varchar(30) | NO   |     | NULL    |                |
+| Charges_PerDay | int         | YES  |     | NULL    |                |
++----------------+-------------+------+-----+---------+----------------+
+
+5. desc booking_info;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| ID         | int         | NO   | PRI | NULL    | auto_increment |
+| Maid_Id    | int         | YES  | MUL | NULL    |                |
+| User_ID    | int         | YES  | MUL | NULL    |                |
+| Service_ID | int         | YES  | MUL | NULL    |                |
+| Time       | varchar(30) | YES  |     | NULL    |                |
+| Date       | varchar(30) | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+
+6. desc Maid_Review;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| ID          | int          | NO   | PRI | NULL    | auto_increment |
+| Maid_ID     | int          | YES  |     | NULL    |                |
+| User_ID     | int          | YES  |     | NULL    |                |
+| Rating      | varchar(30)  | YES  |     | NULL    |                |
+| Description | varchar(100) | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+
+7. desc contact_us;
++-----------+--------------+------+-----+---------+----------------+
+| Field     | Type         | Null | Key | Default | Extra          |
++-----------+--------------+------+-----+---------+----------------+
+| ID        | int          | NO   | PRI | NULL    | auto_increment |
+| Name      | varchar(30)  | YES  |     | NULL    |                |
+| Mobile_No | varchar(30)  | YES  |     | NULL    |                |
+| Email_ID  | varchar(30)  | YES  |     | NULL    |                |
+| City      | varchar(30)  | YES  |     | NULL    |                |
+| Message   | varchar(100) | YES  |     | NULL    |                |
++-----------+--------------+------+-----+---------+----------------+
