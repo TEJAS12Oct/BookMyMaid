@@ -1,0 +1,77 @@
+CREATE DATABASE BookMyMaid
+
+1. create table Admin (
+		ID int primary key auto_increment , 
+		UserName  varchar (30) not null , 
+		PassWord varchar (30) not null
+);
+
+2. create table Maid ( 
+		ID int primary key auto_increment , 
+		Name  varchar (30) not null  ,
+		UserName varchar (30) not null, 
+		PassWord varchar (30) not null , 
+		Gender Varchar (10) not null , 
+		DOB date not null ,
+		Mobile_No varchar (30) not null , 
+		Email_Id varchar(30) not null, 
+		Address  varchar (100) not null , 
+		Adhar_Card varchar (30) not null , 
+		Police_Verification_Certificate  varchar (30) not null , 
+		Experience int , 
+		Rating varchar(30)  , 
+		Images varchar (70) 
+);
+
+3. create table User ( 
+		ID int primary key auto_increment , 
+		Name  varchar (30) not null  ,
+		UserName varchar (30) not null,	
+		PassWord varchar (30) not null , 
+		Gender Varchar (10) not null , 
+		DOB date not null ,
+		Mobile_No varchar (30) not null , 
+		Email_Id varchar(30) not null, 
+		Address  varchar (100) not null ,
+		Adhar_Card varchar (30) not null , 
+		Images varchar (70) 
+);
+
+4. create table Services ( 
+		ID int Primary key auto_increment , 
+		Service varchar (30) not null , 
+		Charges_PerDay int 
+);
+
+5.  create table booking_info ( 
+                 ID int primary key auto_increment ,  
+                 Maid_Id int , 
+                 User_Id int , 
+                 Service_Id int , 
+                 Start_Day date , 
+                 End_Day date , 
+                 Charges_PerDay int, 
+                 Total_Charges int ,  
+                 foreign key (Maid_Id) references Maid(ID), 
+                 foreign key (User_Id) references User(ID) , 
+                 foreign key (Service_Id) references Services(ID) 
+);
+
+6. create table Maid_Review (
+		ID int primary key auto_increment , 
+		Maid_ID int , 
+		User_ID int , 
+		Rating varchar(30) ,
+		Description varchar (100) ,
+		foreign key (Maid_Id) references Maid(ID), 
+                foreign key (User_Id) references User(ID)
+);
+
+7.  create table contact_us (
+		ID int primary key auto_increment , 
+		Name varchar(30) , 
+		Mobile_No varchar(30), 
+		Email_ID varchar(30) , 
+		City varchar(30) , 
+		Message varchar (100) 
+);

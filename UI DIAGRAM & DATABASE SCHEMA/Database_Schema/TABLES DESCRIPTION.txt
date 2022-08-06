@@ -29,7 +29,7 @@ DATABASE DESCRIPTION BookMyMaid
 | Images                          | varchar(70)  | YES  |     | NULL    |                |
 +---------------------------------+--------------+------+-----+---------+----------------+
 
-3.   desc user;
+3.  desc user;
 +------------+--------------+------+-----+---------+----------------+
 | Field      | Type         | Null | Key | Default | Extra          |
 +------------+--------------+------+-----+---------+----------------+
@@ -38,15 +38,15 @@ DATABASE DESCRIPTION BookMyMaid
 | UserName   | varchar(30)  | NO   |     | NULL    |                |
 | PassWord   | varchar(30)  | NO   |     | NULL    |                |
 | Gender     | varchar(10)  | NO   |     | NULL    |                |
+| DOB        | date         | NO   |     | NULL    |                |
 | Mobile_No  | varchar(30)  | NO   |     | NULL    |                |
 | Email_Id   | varchar(30)  | NO   |     | NULL    |                |
 | Address    | varchar(100) | NO   |     | NULL    |                |
 | Adhar_Card | varchar(30)  | NO   |     | NULL    |                |
 | Images     | varchar(70)  | YES  |     | NULL    |                |
-| DOB        | date         | YES  |     | NULL    |                |
 +------------+--------------+------+-----+---------+----------------+
 
-4. desc services;
+4.  desc services;
 +----------------+-------------+------+-----+---------+----------------+
 | Field          | Type        | Null | Key | Default | Extra          |
 +----------------+-------------+------+-----+---------+----------------+
@@ -55,21 +55,21 @@ DATABASE DESCRIPTION BookMyMaid
 | Charges_PerDay | int         | YES  |     | NULL    |                |
 +----------------+-------------+------+-----+---------+----------------+
 
-5. desc booking_info;
+5.  desc booking_info;
 +----------------+------+------+-----+---------+----------------+
 | Field          | Type | Null | Key | Default | Extra          |
 +----------------+------+------+-----+---------+----------------+
 | ID             | int  | NO   | PRI | NULL    | auto_increment |
 | Maid_Id        | int  | YES  | MUL | NULL    |                |
-| User_ID        | int  | YES  | MUL | NULL    |                |
-| Service_ID     | int  | YES  | MUL | NULL    |                |
+| User_Id        | int  | YES  | MUL | NULL    |                |
+| Service_Id     | int  | YES  | MUL | NULL    |                |
 | Start_Day      | date | YES  |     | NULL    |                |
 | End_Day        | date | YES  |     | NULL    |                |
-| Total_Charges  | int  | YES  |     | NULL    |                |
 | Charges_PerDay | int  | YES  |     | NULL    |                |
+| Total_Charges  | int  | YES  |     | NULL    |                |
 +----------------+------+------+-----+---------+----------------+
 
-6. desc maid_review;
+6.  desc maid_review;
 +-------------+--------------+------+-----+---------+----------------+
 | Field       | Type         | Null | Key | Default | Extra          |
 +-------------+--------------+------+-----+---------+----------------+
@@ -79,7 +79,8 @@ DATABASE DESCRIPTION BookMyMaid
 | Rating      | varchar(30)  | YES  |     | NULL    |                |
 | Description | varchar(100) | YES  |     | NULL    |                |
 +-------------+--------------+------+-----+---------+----------------+
-7. desc contact_us;
+
+7.  desc contact_us;
 +-----------+--------------+------+-----+---------+----------------+
 | Field     | Type         | Null | Key | Default | Extra          |
 +-----------+--------------+------+-----+---------+----------------+
