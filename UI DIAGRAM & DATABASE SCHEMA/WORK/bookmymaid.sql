@@ -36,7 +36,7 @@ CREATE TABLE `admin` (
 
 LOCK TABLES `admin` WRITE;
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
-INSERT INTO `admin` VALUES (1,'Tejas','Tejas@123'),(2,'Ruchita','Ruchita@123'),(3,'Mayur','Mayur@123'),(4,'Pankaj','Pankaj@123'),(5,'Atharva','Atharva@123'),(6,'Akshay','Akshay@123');
+INSERT INTO `admin` VALUES (1,'Akshay','Akshay@123'),(2,'Atharva','Atharva@123'),(3,'Tejas','Tejas@123'),(4,'Mayur','Mayur@123'),(5,'Pankaj','Pankaj@123'),(6,'Ruchita','Ruchita@123');
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -234,4 +234,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-08-06 19:59:31
+-- Dump completed on 2022-08-06 21:31:53
