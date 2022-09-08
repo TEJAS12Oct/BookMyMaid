@@ -1,39 +1,33 @@
 DATABASE TABLES INFORMATION
 NAME , PRIMARY & FORIEGN KEY 
   
-1. MAID 
-   ID AUTO_INCREMENT (PRIMARY KEY) , NAME , USERNAME , PASSWORD , GENDER , AGE , 
-   MOBILE_NO , EMAIL_ID , ADDRESS , CITY , PINCODE , ADHAR_CARD , 
-   EXTRA_CHARGE_PER_ROOM , EXTRA_CHARGE_PER_MEMBER
-   POLICE_VERIFICATION_CERTIFICATE , EXPERIENCE , IMAGES  
+1. maid 
+   maid_id AUTO_INCREMENT (PRIMARY KEY) , maid_name , maid_username , maid_password , maid_age , 
+   maid_mobile_no , maid_email_id , maid_address , maid_city , maid_pincode , 
+   maid_adhar_card , maid_police_verification_certificate , 
+   maid_extra_charge_per_room , maid_extra_charge_per_member ,
+   maid_experience , maid_images 
 
-2. USER 
-   ID AUTO_INCREMENT (PRIMARY KEY) , NAME , USERNAME , PASSWORD, 
-   GENDER , FAMILY_MEMBERS , ROOMS , MOBILE_NO , EMAIL_ID, 
-   ADDRESS , CITY , PINCODE , ADHAR_CARD , IMAGES 
+2. user 
+   user_id AUTO_INCREMENT (PRIMARY KEY) , user_name , user_username , user_password 
+   user_gender , user_family_members , user_rooms , user_mobile_no , user_email_id ,
+   user_address  , user_city , user_pincode , user_adhar_card , user_images 
    
-3. SERVICES 
-   ID AUTO_INCREMENT (PRIMARY KEY) , SERVICE , BASE_CHARGES 
+3. services
+   services_id AUTO_INCREMENT (PRIMARY KEY) , services_name , base_charges 
 
-4. BOOKING_INFO
-   ID AUTO_INCREMENT (PRIMARY KEY) , 
-   MAID_ID REFERENCE (MAID INFO TABLE) ID (FORIEGN KEY) , 
-   USER_ID REFERENCE (USER INFO TABLE) ID (FORIEGN KEY) , 
-   SERVICE_ID REFERENCE (SERVICES TABLE) ID (FORIEGN KEY) ,
-   MAID_EXTRA_CHARGE_PER_ROOM (MAID INFO TABLE) EXTRA_CHARGE_PER_ROOM (FORIEGN KEY) , 
-   MAID_EXTRA_CHARGE_PER_MEMBER (MAID INFO TABLE) EXTRA_CHARGE_PER_MEMBER (FORIEGN KEY),
-   USER_FAMILY_MEMBERS (MAID INFO TABLE) FAMILY_MEMBERS (FORIEGN KEY), 
-   USER_ROOMS (MAID INFO TABLE) ROOMS (FORIEGN KEY),
-   BOOKING_DATE ,
-   MONTH_CHARGES , 
-   TIME_SLOTS ,
-   HOLIDAYS  
+4. booking_info 
+   booking_info_id AUTO_INCREMENT (PRIMARY KEY) , 
+   maid_id , user_id , services_id  , 
+   maid_booking_date ,month_charges , maid_time_slots ,maid_holidays ,
+   foreign key (maid_id) references maid (maid_id), 
+   foreign key (user_id) references user (user_id) , 
+   foreign key (services_id) references services (services_id) 
 
-5. MAID_REVIEW 
-   ID AUTO_INCREMENT (PRIMARY KEY) , 
-   MAID_ID REFERENCE (MAID INFO TABLE) ID (FORIEGN KEY),  
-   USER_ID REFERENCE (USER INFO TABLE) ID (FORIEGN KEY) ,
-   RATING  , 
-   COMMENTS 
+5. maid_review 
+   maid_review_id AUTO_INCREMENT (PRIMARY KEY) , 
+   maid_id , user_id , maid_rating , maid_comments ,
+   foreign key (maid_id) references maid (maid_id), 
+   foreign key (user_id) references user (user_id) 
 
    

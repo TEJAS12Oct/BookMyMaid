@@ -1,77 +1,67 @@
 CREATE DATABASE BookMyMaid
 
-1. create table Admin (
-		ID int primary key auto_increment , 
-		UserName  varchar (30) not null , 
-		PassWord varchar (30) not null
+1. create table maid ( 
+		maid_id int primary key auto_increment , 
+		maid_name  varchar (30) not null  ,
+		maid_username varchar (30) not null, 
+		maid_password varchar (30) not null , 
+		maid_age int not null ,
+		maid_mobile_no varchar (30) not null , 
+		maid_email_id varchar(30) not null, 
+		maid_address varchar (100) not null ,
+		maid_city varchar (100) not null ,
+		maid_pincode varchar (100) not null , 
+		maid_adhar_card varchar (30) not null , 
+		maid_police_verification_certificate  varchar (30) not null , 
+		maid_extra_charge_per_room int not null ,
+                maid_extra_charge_per_member int not null,
+		maid_experience int not null,  
+		maid_images longblob 
 );
 
-2. create table Maid ( 
-		ID int primary key auto_increment , 
-		Name  varchar (30) not null  ,
-		UserName varchar (30) not null, 
-		PassWord varchar (30) not null , 
-		Gender Varchar (10) not null , 
-		DOB date not null ,
-		Mobile_No varchar (30) not null , 
-		Email_Id varchar(30) not null, 
-		Address  varchar (100) not null , 
-		Adhar_Card varchar (30) not null , 
-		Police_Verification_Certificate  varchar (30) not null , 
-		Experience int , 
-		Rating varchar(30)  , 
-		Images varchar (70) 
+2. create table user ( 
+		user_id int primary key auto_increment , 
+		user_name varchar (30) not null  ,
+		user_username varchar (30) not null,	
+		user_password varchar (30) not null , 
+		user_gender Varchar (10) not null , 
+		user_family_members int not null ,
+		user_rooms int not null ,
+		user_mobile_no varchar (30) not null , 
+		user_email_id varchar(30) not null, 
+		user_address  varchar (100) not null ,
+		user_city varchar (100) not null ,
+		user_pincode varchar (100) not null , 
+		user_adhar_card varchar (30) not null ,
+		user_images longblob 
 );
 
-3. create table User ( 
-		ID int primary key auto_increment , 
-		Name  varchar (30) not null  ,
-		UserName varchar (30) not null,	
-		PassWord varchar (30) not null , 
-		Gender Varchar (10) not null , 
-		DOB date not null ,
-		Mobile_No varchar (30) not null , 
-		Email_Id varchar(30) not null, 
-		Address  varchar (100) not null ,
-		Adhar_Card varchar (30) not null , 
-		Images varchar (70) 
+3. create table services ( 
+		services_id int Primary key auto_increment , 
+		services_name varchar (30) not null , 
+		base_charges int not null 
 );
 
-4. create table Services ( 
-		ID int Primary key auto_increment , 
-		Service varchar (30) not null , 
-		Charges_PerDay int 
+4.  create table booking_info ( 
+                 booking_info_id int primary key auto_increment ,  
+                 maid_id int , 
+                 user_id int , 
+                 services_id int , 
+                 maid_booking_date date ,
+                 month_charges int ,  
+		 maid_time_slots time,
+		 maid_holidays int ,
+                 foreign key (maid_id) references maid (maid_id), 
+                 foreign key (user_id) references user (user_id) , 
+                 foreign key (services_id) references services (services_id)
 );
 
-5.  create table booking_info ( 
-                 ID int primary key auto_increment ,  
-                 Maid_Id int , 
-                 User_Id int , 
-                 Service_Id int , 
-                 Start_Day date , 
-                 End_Day date , 
-                 Charges_PerDay int, 
-                 Total_Charges int ,  
-                 foreign key (Maid_Id) references Maid(ID), 
-                 foreign key (User_Id) references User(ID) , 
-                 foreign key (Service_Id) references Services(ID) 
-);
-
-6. create table Maid_Review (
-		ID int primary key auto_increment , 
-		Maid_ID int , 
-		User_ID int , 
-		Rating varchar(30) ,
-		Description varchar (100) ,
-		foreign key (Maid_Id) references Maid(ID), 
-                foreign key (User_Id) references User(ID)
-);
-
-7.  create table contact_us (
-		ID int primary key auto_increment , 
-		Name varchar(30) , 
-		Mobile_No varchar(30), 
-		Email_ID varchar(30) , 
-		City varchar(30) , 
-		Message varchar (100) 
+5. create table maid_review (
+		maid_review_id int primary key auto_increment , 
+		maid_id int , 
+		user_id int , 
+		maid_rating varchar(30) ,
+		maid_comments varchar (100) ,
+		foreign key (maid_id) references maid (maid_id), 
+                foreign key (user_id) references user (user_id) 
 );
