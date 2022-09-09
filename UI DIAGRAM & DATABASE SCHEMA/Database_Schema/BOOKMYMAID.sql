@@ -24,13 +24,13 @@ DROP TABLE IF EXISTS `booking_info`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `booking_info` (
   `booking_info_id` int NOT NULL AUTO_INCREMENT,
-  `maid_id` int DEFAULT NULL,
-  `user_id` int DEFAULT NULL,
-  `services_id` int DEFAULT NULL,
-  `maid_booking_date` date DEFAULT NULL,
-  `month_charges` int DEFAULT NULL,
-  `maid_time_slots` time DEFAULT NULL,
-  `maid_holidays` int DEFAULT NULL,
+  `maid_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `services_id` int NOT NULL,
+  `maid_booking_date` date NOT NULL,
+  `month_charges` int NOT NULL,
+  `maid_time_slots` time NOT NULL,
+  `maid_holidays` int NOT NULL,
   PRIMARY KEY (`booking_info_id`),
   KEY `maid_id` (`maid_id`),
   KEY `user_id` (`user_id`),
@@ -96,10 +96,10 @@ DROP TABLE IF EXISTS `maid_review`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `maid_review` (
   `maid_review_id` int NOT NULL AUTO_INCREMENT,
-  `maid_id` int DEFAULT NULL,
-  `user_id` int DEFAULT NULL,
-  `maid_rating` varchar(30) DEFAULT NULL,
-  `maid_comments` varchar(100) DEFAULT NULL,
+  `maid_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `maid_rating` varchar(30) NOT NULL,
+  `maid_comments` varchar(100) NOT NULL,
   PRIMARY KEY (`maid_review_id`),
   KEY `maid_id` (`maid_id`),
   KEY `user_id` (`user_id`),
@@ -185,4 +185,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-08 18:58:44
+-- Dump completed on 2022-09-09  9:31:50

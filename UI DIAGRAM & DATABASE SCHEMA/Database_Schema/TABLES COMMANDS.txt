@@ -44,13 +44,13 @@ CREATE DATABASE BookMyMaid
 
 4.  create table booking_info ( 
                  booking_info_id int primary key auto_increment ,  
-                 maid_id int , 
-                 user_id int , 
-                 services_id int , 
-                 maid_booking_date date ,
-                 month_charges int ,  
-		 maid_time_slots time,
-		 maid_holidays int ,
+                 maid_id int not null , 
+                 user_id int not null , 
+                 services_id int not null , 
+                 maid_booking_date date not null ,
+                 month_charges int not null ,  
+		 maid_time_slots time not null ,
+		 maid_holidays int not null ,
                  foreign key (maid_id) references maid (maid_id), 
                  foreign key (user_id) references user (user_id) , 
                  foreign key (services_id) references services (services_id)
@@ -58,10 +58,10 @@ CREATE DATABASE BookMyMaid
 
 5. create table maid_review (
 		maid_review_id int primary key auto_increment , 
-		maid_id int , 
-		user_id int , 
-		maid_rating varchar(30) ,
-		maid_comments varchar (100) ,
+		maid_id int not null , 
+		user_id int not null , 
+		maid_rating varchar(30) not null ,
+		maid_comments varchar (100) not null ,
 		foreign key (maid_id) references maid (maid_id), 
                 foreign key (user_id) references user (user_id) 
 );

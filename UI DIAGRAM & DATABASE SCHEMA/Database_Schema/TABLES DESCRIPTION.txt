@@ -50,27 +50,6 @@ TABLE  DESCRIPTION
 | base_charges  | int         | NO   |     | NULL    |                |
 +---------------+-------------+------+-----+---------+----------------+
 
-4.  desc booking_info;
-+-------------------+------+------+-----+---------+----------------+
-| Field             | Type | Null | Key | Default | Extra          |
-+-------------------+------+------+-----+---------+----------------+
-| booking_info_id   | int  | NO   | PRI | NULL    | auto_increment |
-| maid_id           | int  | YES  | MUL | NULL    |                |
-| user_id           | int  | YES  | MUL | NULL    |                |
-| services_id       | int  | YES  | MUL | NULL    |                |
-| maid_booking_date | date | YES  |     | NULL    |                |
-| month_charges     | int  | YES  |     | NULL    |                |
-| maid_time_slots   | time | YES  |     | NULL    |                |
-| maid_holidays     | int  | YES  |     | NULL    |                |
-+-------------------+------+------+-----+---------+----------------+
+4.  desc booking_info;+-------------------+------+------+-----+---------+----------------+| Field             | Type | Null | Key | Default | Extra          |+-------------------+------+------+-----+---------+----------------+| booking_info_id   | int  | NO   | PRI | NULL    | auto_increment || maid_id           | int  | NO   | MUL | NULL    |                || user_id           | int  | NO   | MUL | NULL    |                || services_id       | int  | NO   | MUL | NULL    |                || maid_booking_date | date | NO   |     | NULL    |                || month_charges     | int  | NO   |     | NULL    |                || maid_time_slots   | time | NO   |     | NULL    |                || maid_holidays     | int  | NO   |     | NULL    |                |+-------------------+------+------+-----+---------+----------------+
 
-5. desc maid_review;
-+----------------+--------------+------+-----+---------+----------------+
-| Field          | Type         | Null | Key | Default | Extra          |
-+----------------+--------------+------+-----+---------+----------------+
-| maid_review_id | int          | NO   | PRI | NULL    | auto_increment |
-| maid_id        | int          | YES  | MUL | NULL    |                |
-| user_id        | int          | YES  | MUL | NULL    |                |
-| maid_rating    | varchar(30)  | YES  |     | NULL    |                |
-| maid_comments  | varchar(100) | YES  |     | NULL    |                |
-+----------------+--------------+------+-----+---------+----------------+
+5. desc maid_review;+----------------+--------------+------+-----+---------+----------------+| Field          | Type         | Null | Key | Default | Extra          |+----------------+--------------+------+-----+---------+----------------+| maid_review_id | int          | NO   | PRI | NULL    | auto_increment || maid_id        | int          | NO   | MUL | NULL    |                || user_id        | int          | NO   | MUL | NULL    |                || maid_rating    | varchar(30)  | NO   |     | NULL    |                || maid_comments  | varchar(100) | NO   |     | NULL    |                |+----------------+--------------+------+-----+---------+----------------+
