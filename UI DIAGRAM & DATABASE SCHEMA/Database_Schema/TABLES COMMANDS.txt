@@ -14,7 +14,7 @@ CREATE DATABASE BookMyMaid
 		maid_adhar_card varchar (30) not null , 
 		maid_police_verification_certificate  varchar (30) not null , 
 		maid_extra_charge_per_room int not null ,
-                maid_extra_charge_per_member int not null,
+        maid_extra_charge_per_member int not null,
 		maid_experience int not null,  
 		maid_images longblob 
 );
@@ -49,8 +49,8 @@ CREATE DATABASE BookMyMaid
                  services_id int not null , 
                  maid_booking_date date not null ,
                  month_charges int not null ,  
-		 maid_time_slots time not null ,
-		 maid_holidays int not null ,
+				 maid_time_slots time not null ,
+				 maid_holidays int not null ,
                  foreign key (maid_id) references maid (maid_id), 
                  foreign key (user_id) references user (user_id) , 
                  foreign key (services_id) references services (services_id)
@@ -63,5 +63,5 @@ CREATE DATABASE BookMyMaid
 		maid_rating varchar(30) not null ,
 		maid_comments varchar (100) not null ,
 		foreign key (maid_id) references maid (maid_id), 
-                foreign key (user_id) references user (user_id) 
+        foreign key (user_id) references user (user_id) 
 );
