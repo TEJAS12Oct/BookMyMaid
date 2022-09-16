@@ -7,12 +7,18 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import Study.BookMyMaid.Entity.services;
 
 @Entity()
 @Table(name = "maid")
@@ -69,6 +75,10 @@ public class maid {
 	@Column(name = " maidImages")
 	private Blob maidImages;
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="services_id")
+	private services servicesId;
+	
 	@OneToMany(mappedBy = "maid", cascade = CascadeType.ALL)
 	private List<maid_review> maid_review = new ArrayList<>();
 
@@ -80,6 +90,27 @@ public class maid {
 		super();
 		this.maidPassword = maidPassword;
 		this.maidEmailId = maidEmailId;
+	}
+
+	public maid(String maidName, String maidUsername, String maidPassword, int maidAge, String maidMobileNo,
+			String maidEmailId, String maidAddress, String maidCity, String maidPincode, String maidAdharCard,
+			String maidPoliceVerificationCertificate, int maidExtraChargePerRoom, int maidExtraChargePerMember,
+			int maidExperience) {
+		super();
+		this.maidName = maidName;
+		this.maidUsername = maidUsername;
+		this.maidPassword = maidPassword;
+		this.maidAge = maidAge;
+		this.maidMobileNo = maidMobileNo;
+		this.maidEmailId = maidEmailId;
+		this.maidAddress = maidAddress;
+		this.maidCity = maidCity;
+		this.maidPincode = maidPincode;
+		this.maidAdharCard = maidAdharCard;
+		this.maidPoliceVerificationCertificate = maidPoliceVerificationCertificate;
+		this.maidExtraChargePerRoom = maidExtraChargePerRoom;
+		this.maidExtraChargePerMember = maidExtraChargePerMember;
+		this.maidExperience = maidExperience;
 	}
 
 	public maid(int maidId, String maidName, String maidUsername, String maidPassword, int maidAge, String maidMobileNo,

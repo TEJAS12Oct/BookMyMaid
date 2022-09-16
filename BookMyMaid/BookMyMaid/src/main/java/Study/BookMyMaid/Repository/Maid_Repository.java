@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import Study.BookMyMaid.Entity.maid;
+import Study.BookMyMaid.Entity.services;
 
 @Repository
 public interface Maid_Repository extends JpaRepository<maid, Integer> {
@@ -20,11 +21,11 @@ public interface Maid_Repository extends JpaRepository<maid, Integer> {
 	public maid checkLoginMaid(String maidEmailId, String maidPassword);
 
 	@Modifying
-	@Query(value = "update maid c set c.maidUsername=?1 , c.maidAge=?2, c.maidMobileNo=?3 ,c.maidEmailId=?4, c.maidAddress=?5,c.maidCity=?6, c.maidPincode=?7, c.maidImages=?8  where c.maidId=?9")
+	@Query(value = "update maid c set c.maidUsername=?1 , c.maidAge=?2, c.maidMobileNo=?3 ,c.maidEmailId=?4, c.maidAddress=?5,c.maidCity=?6, c.maidPincode=?7  where c.maidId=?8")
 	public maid checkLoginmaiid(int maidId, String maidUsername, int maidAge, String maidMobileNo, String maidEmailId,
 			String maidAddress, String maidCity, String maidPincode, Blob maidImages);
 
-//	@Query("select u from maid u where u.services =?1")
-//	public List<maid> getByServices(int ids);
+	//@Query("select u from maid u where u.services =?1")
+	public List<maid> findByServicesId(services service);
 
 }

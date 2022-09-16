@@ -69,11 +69,14 @@ public class user {
 		this.userEmailId = userEmailId;
 	}
 
-	public user(int userId, String userUsername, int userFamilyMembers, int userRooms, String userMobileNo,
-			String userEmailId, String userAddress, String userCity, String userPincode, Blob userImages) {
+	public user(int userId, String userName, String userUsername, String userPassword, int userFamilyMembers,
+			int userRooms, String userMobileNo, String userEmailId, String userAddress, String userCity,
+			String userPincode) {
 		super();
 		this.userId = userId;
+		this.userName = userName;
 		this.userUsername = userUsername;
+		this.userPassword = userPassword;
 		this.userFamilyMembers = userFamilyMembers;
 		this.userRooms = userRooms;
 		this.userMobileNo = userMobileNo;
@@ -81,7 +84,6 @@ public class user {
 		this.userAddress = userAddress;
 		this.userCity = userCity;
 		this.userPincode = userPincode;
-		this.userImages = userImages;
 	}
 
 	public user(int userId, String userName, String userUsername, String userPassword, String userGender,

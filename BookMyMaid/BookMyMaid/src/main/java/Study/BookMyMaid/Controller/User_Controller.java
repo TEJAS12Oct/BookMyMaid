@@ -43,30 +43,26 @@ public class User_Controller {
 		repo.save(u1);
 		return "Successfully User Inserted..";
 	}
-	
+
 	@GetMapping("/userfind/{id}")
 	public user MaidFind(@PathVariable int id) {
 		user p = repo.findById(id).get();
 		System.out.println("Specific user................");
 		return p;
 	}
-	
-	
+
 	@GetMapping("/userfindbyname/{name}")
-	public List<user> f3(@PathVariable("name") String username) 
-	{
+	public List<user> f3(@PathVariable("name") String username) {
 		List<user> list = null;
 		try {
-		list = repo.findByUsername(username);
-		System.out.println("fetched.........");
-		return list;
-		}
-		catch(Exception e)
-		{
+			list = repo.findByUsername(username);
+			System.out.println("fetched.........");
+			return list;
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return list;
-			
+
 	}
 
 	@PutMapping("/userupdate/{id}/{userusername}/{UserFamilyMembers}/{userRooms}/{userMobileNo}/{userEmailId}/{userAddress}/{userCity}/{userPincode}/{userImages}")
@@ -90,10 +86,17 @@ public class User_Controller {
 
 	@PostMapping("/userupdate")
 	public user updateUser(@RequestBody user c) {
-		return repo.checkLoginUser(c.getUserId(), c.getUserUsername(), c.getUserFamilyMembers(), c.getUserRooms(),
-				c.getUserMobileNo(), c.getUserEmailId(), c.getUserAddress(), c.getUserCity(), c.getUserPincode(),
-				c.getUserImages());
+		return repo.checkLoginUser(c.getUserId(), c.getUserName() , c.getUserUsername(), c.getUserPassword(),
+				c.getUserFamilyMembers(), c.getUserRooms(), c.getUserMobileNo(), c.getUserEmailId(), c.getUserAddress(),
+				c.getUserCity(), c.getUserPincode());
 	}
+	
+//	@PostMapping("/userupdate")
+//	public user updateUser(@RequestBody user c) {
+//		return repo.checkLoginUser(c.getUserId(), c.getUserUsername(), c.getUserFamilyMembers(), c.getUserRooms(),
+//				c.getUserMobileNo(), c.getUserEmailId(), c.getUserAddress(), c.getUserCity(), c.getUserPincode(),
+//				c.getUserImages());
+//	}
 
 	@PutMapping("/userupdate/{id}/{name}")
 	public String updateUserName(@PathVariable int id, @PathVariable String name) {
@@ -199,10 +202,13 @@ public class User_Controller {
 
 	@PostMapping("/CheckLogin")
 	public user checklog(@RequestBody user c) {
-		return repo.checkLoginUser(c.getUserEmailId(), c.getUserPassword());
+		try {
+			return repo.checkLoginUser(c.getUserEmailId(), c.getUserPassword());
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
-
-
 
 	@PutMapping("/changepassword/{id}/{pass}")
 	public String UserPass1(@PathVariable int id, @PathVariable String pass) {

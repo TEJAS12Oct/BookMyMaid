@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import Study.BookMyMaid.Entity.maid;
+import Study.BookMyMaid.Entity.services;
 import Study.BookMyMaid.Entity.user;
 import Study.BookMyMaid.Repository.Maid_Repository;
 import Study.BookMyMaid.Repository.Services_Repository;
@@ -41,10 +42,10 @@ public class Maid_Controller {
 
 	@PostMapping("/maidinsert")
 	public String addMaid(@RequestBody maid c) {
-		maid m1 = new maid(c.getMaidId(), c.getMaidName(), c.getMaidUsername(), c.getMaidPassword(), c.getMaidAge(),
+		maid m1 = new maid(c.getMaidName(), c.getMaidUsername(), c.getMaidPassword(), c.getMaidAge(),
 				c.getMaidMobileNo(), c.getMaidEmailId(), c.getMaidAddress(), c.getMaidCity(), c.getMaidPincode(),
 				c.getMaidAdharCard(), c.getMaidPoliceVerificationCertificate(), c.getMaidExtraChargePerRoom(),
-				c.getMaidExtraChargePerMember(), c.getMaidExperience(), c.getMaidImages(), c.getMaid_review());
+				c.getMaidExtraChargePerMember(), c.getMaidExperience());
 		repo.save(m1);
 		return "Successfully Inserted..";
 	}
@@ -63,13 +64,13 @@ public class Maid_Controller {
 
 	}
 
-//	@GetMapping("/getAllMaidsByCategory/{name}")
-//	public List<maid> getAllMaids(@PathVariable("name") String serviceName) {
-//		services s = serviceRepo.getByServicesName(serviceName);
-//		System.out.println(s);
-//		List<maid> list = repo.getByServices(s.getServices_id());
-//  	return list;
-//	}
+	@GetMapping("/getAllMaidsByCategory/{name}")
+	public List<maid> getAllMaids(@PathVariable("name") String serviceName) {
+		services s = serviceRepo.findByServicesName(serviceName);
+		System.out.println(s);
+		List<maid> list = repo.findByServicesId(s);
+		return list;
+	}
 
 	@PutMapping("/maidupdate/{id}/{maidUsername}/{maidAge}/{mobileNo}/{maidEmailId}/{address}/{city}/{pincode}/{images}")
 	public String UpdateMaid(@PathVariable int id, @PathVariable String maidUsername, @PathVariable int maidAge,
@@ -196,16 +197,14 @@ public class Maid_Controller {
 		return id + "Deleted";
 	}
 
-//	@GetMapping("/checkloginformaid/{maidEmailId}/{maidPassword}")
-//	public maid checkLogin(String maidEmailId, String maidPassword) {
-//		maid c = repo.checkLoginMaid(maidEmailId, maidPassword);
-//		return c;
-//
-//	}
-
 	@PostMapping("/CheckLogin")
 	public maid checklog(@RequestBody maid c) {
-		return repo.checkLoginMaid(c.getMaidEmailId(), c.getMaidPassword());
+		try {
+			return repo.checkLoginMaid(c.getMaidEmailId(), c.getMaidPassword());
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@PutMapping("/changepassword/{id}/{pass}")
