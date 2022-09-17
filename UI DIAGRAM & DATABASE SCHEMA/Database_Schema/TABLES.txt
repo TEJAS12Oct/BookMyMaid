@@ -6,7 +6,9 @@ NAME , PRIMARY & FORIEGN KEY
    maid_mobile_no , maid_email_id , maid_address , maid_city , maid_pincode , 
    maid_adhar_card , maid_police_verification_certificate , 
    maid_extra_charge_per_room , maid_extra_charge_per_member ,
-   maid_experience , maid_images 
+   maid_experience , maid_images ,
+   foreign key (services_id) references services (services_id), 
+   
 
 2. user 
    user_id AUTO_INCREMENT (PRIMARY KEY) , user_name , user_username , user_password 
@@ -14,11 +16,10 @@ NAME , PRIMARY & FORIEGN KEY
    user_address  , user_city , user_pincode , user_adhar_card , user_images 
    
 3. services
-   services_id AUTO_INCREMENT (PRIMARY KEY) , services_name , base_charges , maid_id
+   services_id AUTO_INCREMENT (PRIMARY KEY) , services_name , base_charges 
 
 4. booking_info 
    booking_info_id AUTO_INCREMENT (PRIMARY KEY) , 
-   maid_id , user_id , services_id  , 
    maid_booking_date , end_date , start_date , month_charges , maid_time_slots ,maid_holidays ,
    foreign key (maid_id) references maid (maid_id), 
    foreign key (user_id) references user (user_id) , 
@@ -26,8 +27,7 @@ NAME , PRIMARY & FORIEGN KEY
 
 5. maid_review 
    maid_review_id AUTO_INCREMENT (PRIMARY KEY) , 
-   maid_id , user_id , 
-   maid_rating , maid_comments , 
+   maid_rating , maid_comments ,  
    foreign key (maid_id) references maid (maid_id), 
    foreign key (user_id) references user (user_id) 
 
