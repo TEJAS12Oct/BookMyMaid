@@ -52,12 +52,16 @@ public class booking_info {
 	maid MaidBooking;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "userId")
+	@JoinColumn(name = "user_id")
 	user Userbooking;
 
 	@OneToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "servicesId")
 	services Services;
+
+//	@ManyToOne(fetch = FetchType.EAGER)
+//	@JoinColumn(name="user_id")
+//	private user user;
 
 	public booking_info() {
 		super();

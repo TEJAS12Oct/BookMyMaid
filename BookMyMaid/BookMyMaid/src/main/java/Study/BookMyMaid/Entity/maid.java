@@ -13,12 +13,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import Study.BookMyMaid.Entity.services;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity()
 @Table(name = "maid")
@@ -76,11 +75,16 @@ public class maid {
 	private Blob maidImages;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="services_id")
+	@JoinColumn(name = "services_id")
 	private services servicesId;
-	
-	@OneToMany(mappedBy = "maid", cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "maid", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
 	private List<maid_review> maid_review = new ArrayList<>();
+
+	@OneToMany(mappedBy = "MaidBooking", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+	private List<booking_info> booking_info = new ArrayList<>();
 
 	public maid() {
 		super();
@@ -90,27 +94,6 @@ public class maid {
 		super();
 		this.maidPassword = maidPassword;
 		this.maidEmailId = maidEmailId;
-	}
-
-	public maid(String maidName, String maidUsername, String maidPassword, int maidAge, String maidMobileNo,
-			String maidEmailId, String maidAddress, String maidCity, String maidPincode, String maidAdharCard,
-			String maidPoliceVerificationCertificate, int maidExtraChargePerRoom, int maidExtraChargePerMember,
-			int maidExperience) {
-		super();
-		this.maidName = maidName;
-		this.maidUsername = maidUsername;
-		this.maidPassword = maidPassword;
-		this.maidAge = maidAge;
-		this.maidMobileNo = maidMobileNo;
-		this.maidEmailId = maidEmailId;
-		this.maidAddress = maidAddress;
-		this.maidCity = maidCity;
-		this.maidPincode = maidPincode;
-		this.maidAdharCard = maidAdharCard;
-		this.maidPoliceVerificationCertificate = maidPoliceVerificationCertificate;
-		this.maidExtraChargePerRoom = maidExtraChargePerRoom;
-		this.maidExtraChargePerMember = maidExtraChargePerMember;
-		this.maidExperience = maidExperience;
 	}
 
 	public maid(int maidId, String maidName, String maidUsername, String maidPassword, int maidAge, String maidMobileNo,
@@ -161,7 +144,9 @@ public class maid {
 	public maid(int maidId, String maidName, String maidUsername, String maidPassword, int maidAge, String maidMobileNo,
 			String maidEmailId, String maidAddress, String maidCity, String maidPincode, String maidAdharCard,
 			String maidPoliceVerificationCertificate, int maidExtraChargePerRoom, int maidExtraChargePerMember,
-			int maidExperience, Blob maidImages, List<Study.BookMyMaid.Entity.maid_review> maid_review) {
+			int maidExperience, Blob maidImages, services servicesId,
+			List<Study.BookMyMaid.Entity.maid_review> maid_review,
+			List<Study.BookMyMaid.Entity.booking_info> booking_info) {
 		super();
 		this.maidId = maidId;
 		this.maidName = maidName;
@@ -179,7 +164,9 @@ public class maid {
 		this.maidExtraChargePerMember = maidExtraChargePerMember;
 		this.maidExperience = maidExperience;
 		this.maidImages = maidImages;
+		this.servicesId = servicesId;
 		this.maid_review = maid_review;
+		this.booking_info = booking_info;
 	}
 
 	public int getMaidId() {
@@ -310,12 +297,28 @@ public class maid {
 		this.maidImages = maidImages;
 	}
 
+	public services getServicesId() {
+		return servicesId;
+	}
+
+	public void setServicesId(services servicesId) {
+		this.servicesId = servicesId;
+	}
+
 	public List<maid_review> getMaid_review() {
 		return maid_review;
 	}
 
 	public void setMaid_review(List<maid_review> maid_review) {
 		this.maid_review = maid_review;
+	}
+
+	public List<booking_info> getBooking_info() {
+		return booking_info;
+	}
+
+	public void setBooking_info(List<booking_info> booking_info) {
+		this.booking_info = booking_info;
 	}
 
 	@Override
@@ -327,7 +330,8 @@ public class maid {
 				+ ", maidPoliceVerificationCertificate=" + maidPoliceVerificationCertificate
 				+ ", maidExtraChargePerRoom=" + maidExtraChargePerRoom + ", maidExtraChargePerMember="
 				+ maidExtraChargePerMember + ", maidExperience=" + maidExperience + ", maidImages=" + maidImages
-				+ ", maid_review=" + maid_review + "]";
+				+ ", servicesId=" + servicesId + ", maid_review=" + maid_review + ", booking_info=" + booking_info
+				+ "]";
 	}
 
 }

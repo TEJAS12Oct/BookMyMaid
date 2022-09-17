@@ -6,13 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import Study.BookMyMaid.Entity.maid;
 import Study.BookMyMaid.Entity.maid_review;
+import Study.BookMyMaid.Entity.user;
+import Study.BookMyMaid.Repository.Maid_Repository;
 import Study.BookMyMaid.Repository.Maid_Review_Repository;
+import Study.BookMyMaid.Repository.User_Repository;
 
 @CrossOrigin
 @RestController
@@ -22,6 +27,12 @@ public class Maid_Review_Controller {
 
 	@Autowired
 	Maid_Review_Repository mrrepo;
+
+	@Autowired
+	Maid_Repository maidRepo;
+
+	@Autowired
+	User_Repository userRepo;
 
 	@GetMapping("/maidreviewlist")
 	public List<maid_review> showList() {
@@ -35,6 +46,16 @@ public class Maid_Review_Controller {
 		maid_review m1 = new maid_review(c.getMaidReviewId(), c.getMaidRating(), c.getMaidComments(), c.getMaid(),
 				c.getUserBook());
 		mrrepo.save(m1);
+		return "Successfully Inserted..";
+	}
+
+	@PostMapping("/maidreviewinsert/{maidId}/{user_id}")
+	public String addServices1(@RequestBody maid_review c, @PathVariable int maidId, @PathVariable int user_id) {
+		maid m = maidRepo.findById(maidId).get();
+		user u = userRepo.findById(user_id).get();
+		c.setMaid(m);
+		c.setUserBook(u);
+		mrrepo.save(c);
 		return "Successfully Inserted..";
 	}
 

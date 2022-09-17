@@ -29,9 +29,13 @@ public class Services_Controller {
 
 	@GetMapping("/serviceslist")
 	public List<services> showList() {
-		List<services> list = repo.findAll();
+		try{List<services> list = repo.findAll();
 		System.out.println("List delivered................");
-		return list;
+		return list;}
+		catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@PostMapping("/servicesinsert")

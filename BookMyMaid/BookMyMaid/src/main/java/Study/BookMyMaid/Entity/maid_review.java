@@ -39,12 +39,11 @@ public class maid_review {
 		super();
 	}
 
-	public maid_review(int maidReviewId, String maidRating, String maidComments, Study.BookMyMaid.Entity.maid maid) {
+	public maid_review(int maidReviewId, String maidRating, String maidComments) {
 		super();
 		this.maidReviewId = maidReviewId;
 		this.maidRating = maidRating;
 		this.maidComments = maidComments;
-		this.maid = maid;
 	}
 
 	public maid_review(int maidReviewId, String maidRating, String maidComments, Study.BookMyMaid.Entity.maid maid,

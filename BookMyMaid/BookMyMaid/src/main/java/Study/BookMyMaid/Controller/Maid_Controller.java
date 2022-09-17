@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import Study.BookMyMaid.Entity.maid;
 import Study.BookMyMaid.Entity.services;
-import Study.BookMyMaid.Entity.user;
 import Study.BookMyMaid.Repository.Maid_Repository;
 import Study.BookMyMaid.Repository.Services_Repository;
 
@@ -40,13 +39,15 @@ public class Maid_Controller {
 		return list;
 	}
 
-	@PostMapping("/maidinsert")
-	public String addMaid(@RequestBody maid c) {
-		maid m1 = new maid(c.getMaidName(), c.getMaidUsername(), c.getMaidPassword(), c.getMaidAge(),
-				c.getMaidMobileNo(), c.getMaidEmailId(), c.getMaidAddress(), c.getMaidCity(), c.getMaidPincode(),
-				c.getMaidAdharCard(), c.getMaidPoliceVerificationCertificate(), c.getMaidExtraChargePerRoom(),
-				c.getMaidExtraChargePerMember(), c.getMaidExperience());
-		repo.save(m1);
+	@PostMapping("/maidinsert/{servicesId}")
+	public String addMaid(@RequestBody maid c, @PathVariable int servicesId) {
+		services s = serviceRepo.findById(servicesId).get();
+		c.setServicesId(s);
+//		maid m1 = new maid(c.getMaidName(), c.getMaidUsername(), c.getMaidPassword(), c.getMaidAge(),
+//				c.getMaidMobileNo(), c.getMaidEmailId(), c.getMaidAddress(), c.getMaidCity(), c.getMaidPincode(),
+//				c.getMaidAdharCard(), c.getMaidPoliceVerificationCertificate(), c.getMaidExtraChargePerRoom(),
+//				c.getMaidExtraChargePerMember(), c.getMaidExperience());
+		repo.save(c);
 		return "Successfully Inserted..";
 	}
 

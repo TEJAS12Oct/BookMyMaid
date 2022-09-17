@@ -1,6 +1,5 @@
 package Study.BookMyMaid.Repository;
 
-import java.sql.Blob;
 import java.util.List;
 
 import org.springframework.data.jdbc.repository.query.Modifying;
@@ -21,14 +20,8 @@ public interface User_Repository extends JpaRepository<user, Integer> {
 
 	@Modifying
 	@Query(value = "update user c set c.userName=?1 ,c.userUsername=?2,c.userPassword=?3 ,c.userFamilyMembers=?4, c.userRooms=?5 ,c.userMobileNo=?6, c.userEmailId=?7,c.userAddress=?8, c.userCity=?9, c.userPincode=?10 where c.userId=?11")
-	public user checkLoginUser(int userId, String userName,  String userUsername, String userPassword,
+	public user checkLoginUser(int userId, String userName, String userUsername, String userPassword,
 			int userFamilyMembers, int userRooms, String userMobileNo, String userEmailId, String userAddress,
 			String userCity, String userPincode);
-	
-//	@Modifying
-//	@Query(value = "update user c set c.userUsername=?1 , c.userFamilyMembers=?2, c.userRooms=?3 ,c.userMobileNo=?4, c.userEmailId=?5,c.userAddress=?6, c.userCity=?7, c.userPincode=?8 ,c.userImages=?9 where c.userId=?10")
-//	public user checkLoginUser(int userId, String userUsername, int userFamilyMembers, int userRooms,
-//			String userMobileNo, String userEmailId, String userAddress, String userCity, String userPincode,
-//			Blob userImages);
 
 }
