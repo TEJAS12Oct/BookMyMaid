@@ -1,55 +1,0 @@
-TABLE  DESCRIPTION
-1. desc maid ;
-+--------------------------------------+--------------+------+-----+---------+----------------+
-| Field                                | Type         | Null | Key | Default | Extra          |
-+--------------------------------------+--------------+------+-----+---------+----------------+
-| maid_id                              | int          | NO   | PRI | NULL    | auto_increment |
-| maid_name                            | varchar(30)  | NO   |     | NULL    |                |
-| maid_username                        | varchar(30)  | NO   |     | NULL    |                |
-| maid_password                        | varchar(30)  | NO   |     | NULL    |                |
-| maid_age                             | int          | NO   |     | NULL    |                |
-| maid_mobile_no                       | varchar(30)  | NO   |     | NULL    |                |
-| maid_email_id                        | varchar(30)  | NO   |     | NULL    |                |
-| maid_address                         | varchar(100) | NO   |     | NULL    |                |
-| maid_city                            | varchar(100) | NO   |     | NULL    |                |
-| maid_pincode                         | varchar(100) | NO   |     | NULL    |                |
-| maid_adhar_card                      | varchar(30)  | NO   |     | NULL    |                |
-| maid_police_verification_certificate | varchar(30)  | NO   |     | NULL    |                |
-| maid_extra_charge_per_room           | int          | NO   |     | NULL    |                |
-| maid_extra_charge_per_member         | int          | NO   |     | NULL    |                |
-| maid_experience                      | int          | NO   |     | NULL    |                |
-| maid_images                          | longblob     | YES  |     | NULL    |                |
-+--------------------------------------+--------------+------+-----+---------+----------------+
-
-2. desc user;
-+---------------------+--------------+------+-----+---------+----------------+
-| Field               | Type         | Null | Key | Default | Extra          |
-+---------------------+--------------+------+-----+---------+----------------+
-| user_id             | int          | NO   | PRI | NULL    | auto_increment |
-| user_name           | varchar(30)  | NO   |     | NULL    |                |
-| user_username       | varchar(30)  | NO   |     | NULL    |                |
-| user_password       | varchar(30)  | NO   |     | NULL    |                |
-| user_gender         | varchar(10)  | NO   |     | NULL    |                |
-| user_family_members | int          | NO   |     | NULL    |                |
-| user_rooms          | int          | NO   |     | NULL    |                |
-| user_mobile_no      | varchar(30)  | NO   |     | NULL    |                |
-| user_email_id       | varchar(30)  | NO   |     | NULL    |                |
-| user_address        | varchar(100) | NO   |     | NULL    |                |
-| user_city           | varchar(100) | NO   |     | NULL    |                |
-| user_pincode        | varchar(100) | NO   |     | NULL    |                |
-| user_adhar_card     | varchar(30)  | NO   |     | NULL    |                |
-| user_images         | longblob     | YES  |     | NULL    |                |
-+---------------------+--------------+------+-----+---------+----------------+
-
-3. desc services;
-+---------------+-------------+------+-----+---------+----------------+
-| Field         | Type        | Null | Key | Default | Extra          |
-+---------------+-------------+------+-----+---------+----------------+
-| services_id   | int         | NO   | PRI | NULL    | auto_increment |
-| services_name | varchar(30) | NO   |     | NULL    |                |
-| base_charges  | int         | NO   |     | NULL    |                |
-+---------------+-------------+------+-----+---------+----------------+
-
-4.  desc booking_info;+-------------------+------+------+-----+---------+----------------+| Field             | Type | Null | Key | Default | Extra          |+-------------------+------+------+-----+---------+----------------+| booking_info_id   | int  | NO   | PRI | NULL    | auto_increment || maid_id           | int  | NO   | MUL | NULL    |                || user_id           | int  | NO   | MUL | NULL    |                || services_id       | int  | NO   | MUL | NULL    |                || maid_booking_date | date | NO   |     | NULL    |                || month_charges     | int  | NO   |     | NULL    |                || maid_time_slots   | time | NO   |     | NULL    |                || maid_holidays     | int  | NO   |     | NULL    |                |+-------------------+------+------+-----+---------+----------------+
-
-5. desc maid_review;+----------------+--------------+------+-----+---------+----------------+| Field          | Type         | Null | Key | Default | Extra          |+----------------+--------------+------+-----+---------+----------------+| maid_review_id | int          | NO   | PRI | NULL    | auto_increment || maid_id        | int          | NO   | MUL | NULL    |                || user_id        | int          | NO   | MUL | NULL    |                || maid_rating    | varchar(30)  | NO   |     | NULL    |                || maid_comments  | varchar(100) | NO   |     | NULL    |                |+----------------+--------------+------+-----+---------+----------------+
