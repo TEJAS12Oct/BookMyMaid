@@ -1,6 +1,6 @@
 <h1 align="center"> BookMyMaid </h1>
 <p align="center">
-<img height="300" width="300"  src="F:\IET\IET PROJECT\PROJECT WORK\BG IMAGES/1.png">
+<img height="300" width="300"  src="https://github.com/TEJAS12Oct/BookMyMaid/tree/main/UI%20DIAGRAM%20%26%20DATABASE%20SCHEMA/UI_wireframe/1.png">
 </p>
 <br/>
 <br/>
