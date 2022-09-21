@@ -1,6 +1,5 @@
 package Study.BookMyMaid.Controller;
 
-import java.sql.Blob;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,182 +22,177 @@ import Study.BookMyMaid.Repository.Services_Repository;
 @CrossOrigin
 @RestController
 @Controller
-@RequestMapping(path = "/maid")
+@RequestMapping(path = "/maid") // Maps HTTP Requests To Handler Methods Of REST Controllers
 public class Maid_Controller {
 
-	@Autowired
+	@Autowired // Right Dependency Is Assigned By The Spring Container.
 	Maid_Repository repo;
 
 	@Autowired
 	Services_Repository serviceRepo;
 
-	@GetMapping("/maidlist")
+	@GetMapping("/maidlist") // List Of All Maids
 	public List<maid> showList() {
 		List<maid> list = repo.findAll();
-		System.out.println("List delivered................");
+		System.out.println("List delivered...!!!");
 		return list;
 	}
 
-	@PostMapping("/maidinsert/{servicesId}")
-	public String addMaid(@RequestBody maid c, @PathVariable int servicesId) {
-		services s = serviceRepo.findById(servicesId).get();
-		c.setServicesId(s);
-//		maid m1 = new maid(c.getMaidName(), c.getMaidUsername(), c.getMaidPassword(), c.getMaidAge(),
-//				c.getMaidMobileNo(), c.getMaidEmailId(), c.getMaidAddress(), c.getMaidCity(), c.getMaidPincode(),
-//				c.getMaidAdharCard(), c.getMaidPoliceVerificationCertificate(), c.getMaidExtraChargePerRoom(),
-//				c.getMaidExtraChargePerMember(), c.getMaidExperience());
-		repo.save(c);
-		return "Successfully Inserted..";
+	@PostMapping("/maidinsert") // Insert Maid
+	public String addMaid(@RequestBody maid c) {
+		maid m1 = new maid(c.getMaidName(), c.getMaidUsername(), c.getMaidPassword(), c.getMaidAge(),
+				c.getMaidMobileNo(), c.getMaidEmailId(), c.getMaidAddress(), c.getMaidCity(), c.getMaidPincode(),
+				c.getMaidAdharCard(), c.getMaidPoliceVerificationCertificate(), c.getMonthCharges(),
+				c.getMaidExperience());
+		repo.save(m1);
+		return "Successfully Inserted...!!!";
 	}
 
-	@GetMapping("/maidfind/{id}")
+	@PostMapping("/maidinsert/{servicesId}") // Insert Maid
+	public String addMaid1(@RequestBody maid c, @PathVariable int servicesId) {
+		services s = serviceRepo.findById(servicesId).get();
+		c.setServicesId(s);
+		repo.save(c);
+		return "Successfully Inserted...!!!";
+	}
+
+	@GetMapping("/maidfind/{id}") // Find Maid By ID
 	public maid MaidFind(@PathVariable int id) {
 		maid p = repo.findById(id).get();
-		System.out.println("Specific Maid................");
+		System.out.println("Specific Maid...!!!");
 		return p;
 	}
 
-	@GetMapping("/maidfindbyname/{name}")
+	@GetMapping("/maidfindbyname/{name}") // Find Maid By Name
 	public List<maid> f3(@PathVariable("name") String maidname) {
 		List<maid> list = repo.findByMaidname(maidname);
 		return list;
 
 	}
 
-	@GetMapping("/getAllMaidsByCategory/{name}")
+	@GetMapping("/getAllMaidsByCategory/{name}") // Find Maid By Using Services
 	public List<maid> getAllMaids(@PathVariable("name") String serviceName) {
 		services s = serviceRepo.findByServicesName(serviceName);
-		System.out.println(s);
+		System.out.println(serviceRepo.findByServicesName(serviceName));
 		List<maid> list = repo.findByServicesId(s);
 		return list;
 	}
 
-	@PutMapping("/maidupdate/{id}/{maidUsername}/{maidAge}/{mobileNo}/{maidEmailId}/{address}/{city}/{pincode}/{images}")
-	public String UpdateMaid(@PathVariable int id, @PathVariable String maidUsername, @PathVariable int maidAge,
-			@PathVariable String maidMobileNo, @PathVariable String maidEmailId, @PathVariable String maidAddress,
-			@PathVariable String maidCity, @PathVariable String maidPincode, @PathVariable Blob images) {
-		maid m = repo.findById(id).get();
-		m.setMaidUsername(maidUsername);
-		m.setMaidAge(maidAge);
-		m.setMaidMobileNo(maidMobileNo);
-		m.setMaidEmailId(maidEmailId);
-		m.setMaidAddress(maidAddress);
-		m.setMaidCity(maidCity);
-		m.setMaidPincode(maidPincode);
-		m.setMaidImages(images);
+	@PostMapping("/maidupdate/{maidId}") // Update Maid
+	public maid updatemaid(@RequestBody maid c, @PathVariable int maidId) {
+		maid m = repo.findById(maidId).get();
+		m.setMaidName(c.getMaidName());
+		m.setMaidUsername(c.getMaidUsername());
+		m.setMaidPassword(c.getMaidPassword());
+		m.setMaidAge(c.getMaidAge());
+		m.setMaidMobileNo(c.getMaidMobileNo());
+		m.setMaidEmailId(c.getMaidEmailId());
+		m.setMaidAddress(c.getMaidAddress());
+		m.setMaidCity(c.getMaidCity());
+		m.setMaidPincode(c.getMaidPincode());
+		m.setMaidAdharCard(c.getMaidAdharCard());
+		m.setMaidPoliceVerificationCertificate(c.getMaidPoliceVerificationCertificate());
+		m.setMonthCharges(c.getMonthCharges());
+		m.setMaidExperience(c.getMaidExperience());
 		repo.save(m);
-		return "Updated record...";
+		return null;
 	}
 
-	@PostMapping("/maidupdate")
+	@PostMapping("/maidupdate") // Update Maid
 	public maid updateMaid(@RequestBody maid c) {
-		return repo.checkLoginmaiid(c.getMaidId(), c.getMaidUsername(), c.getMaidAge(), c.getMaidMobileNo(),
-				c.getMaidEmailId(), c.getMaidAddress(), c.getMaidCity(), c.getMaidPincode(), c.getMaidImages());
+		return repo.checkLoginmaiid(c.getMaidId(), c.getMaidName(), c.getMaidUsername(), c.getMaidPassword(),
+				c.getMaidAge(), c.getMaidMobileNo(), c.getMaidEmailId(), c.getMaidAddress(), c.getMaidCity(),
+				c.getMaidPincode(), c.getMaidAdharCard(), c.getMaidPoliceVerificationCertificate(), c.getMonthCharges(),
+				c.getMaidExperience());
 	}
 
-	@PutMapping("/maidupdatename/{id}/{name}")
+	@PutMapping("/maidupdatename/{id}/{name}") // Update MaidName
 	public String updateMaidName(@PathVariable int id, @PathVariable String name) {
 		maid p = repo.findById(id).get();
 		p.setMaidName(name);
 		repo.save(p);
-		return "Updated record...";
+		return "Updated record...!!!";
 	}
 
-	@PutMapping("/maidupdateusername/{id}/{username}")
+	@PutMapping("/maidupdateusername/{id}/{username}") // Update MaidUserName
 	public String updateMaid_User_Name(@PathVariable int id, @PathVariable String username) {
 		maid p = repo.findById(id).get();
 		p.setMaidUsername(username);
 		repo.save(p);
-		return "Updated record...";
+		return "Updated record......!!!";
 	}
 
-	@PutMapping("/maidupdatepassword/{id}/{password}")
+	@PutMapping("/maidupdatepassword/{id}/{password}") // Update MaidPassWord
 	public String updateMaid_Password(@PathVariable int id, @PathVariable String password) {
 		maid p = repo.findById(id).get();
 		p.setMaidPassword(password);
 		repo.save(p);
-		return "Updated record...";
+		return "Updated record...!!!";
 	}
 
-	@PutMapping("/maidupdatemobileno/{id}/{mobileNo}")
+	@PutMapping("/maidupdatemobileno/{id}/{mobileNo}") // Update MaidMobile No
 	public String updateMaid_Mobile_No(@PathVariable int id, @PathVariable String mobileNo) {
 		maid p = repo.findById(id).get();
 		p.setMaidMobileNo(mobileNo);
 		repo.save(p);
-		return "Updated record...";
+		return "Updated record...!!!";
 	}
 
-	@PutMapping("/maidupdateemailid/{id}/{emailid}")
+	@PutMapping("/maidupdateemailid/{id}/{emailid}") // Update MaidEmail ID
 	public String updateMaid_Email_Id(@PathVariable int id, @PathVariable String emailId) {
 		maid p = repo.findById(id).get();
 		p.setMaidEmailId(emailId);
 		repo.save(p);
-		return "Updated record...";
+		return "Updated record...!!!";
 	}
 
-	@PutMapping("/maidupdateaddress/{id}/{address}")
+	@PutMapping("/maidupdateaddress/{id}/{address}") // Update MaidAddress
 	public String updateMaid_Address(@PathVariable int id, @PathVariable String address) {
 		maid p = repo.findById(id).get();
 		p.setMaidAddress(address);
 		repo.save(p);
-		return "Updated record...";
+		return "Updated record...!!!";
 	}
 
-	@PutMapping("/maidupdatecity/{id}/{city}")
+	@PutMapping("/maidupdatecity/{id}/{city}") // Update MaidCity
 	public String updateMaid_City(@PathVariable int id, @PathVariable String city) {
 		maid p = repo.findById(id).get();
 		p.setMaidCity(city);
 		repo.save(p);
-		return "Updated record...";
+		return "Updated record...!!!";
 	}
 
-	@PutMapping("/maidupdatepincode/{id}/{pincode}")
+	@PutMapping("/maidupdatepincode/{id}/{pincode}") // // Update MaidPincode
 	public String updateMaid_Pincode(@PathVariable int id, @PathVariable String pincode) {
 		maid p = repo.findById(id).get();
 		p.setMaidPincode(pincode);
 		repo.save(p);
-		return "Updated record...";
+		return "Updated record...!!!";
 	}
 
-	@PutMapping("/maidupdateExtraChargePerRoom/{id}/{maidExtraChargePerRoom}")
-	public String updateMaid_extra_charge_per_room(@PathVariable int id, @PathVariable int maidExtraChargePerRoom) {
+	@PutMapping("/maidupdatemonthCharges/{id}/{monthCharges}") // Update MaidMonthCharges
+	public String updateMaid_extra_charge_per_room(@PathVariable int id, @PathVariable int monthCharges) {
 		maid p = repo.findById(id).get();
-		p.setMaidExtraChargePerRoom(maidExtraChargePerRoom);
+		p.setMonthCharges(monthCharges);
 		repo.save(p);
-		return "Updated record...";
+		return "Updated record...!!!";
 	}
 
-	@PutMapping("/maidupdateExtraChargePerMember/{id}/{maidExtraChargePerMember}")
-	public String updateMaid_extra_charge_per_member(@PathVariable int id, @PathVariable int maidExtraChargePerMember) {
-		maid p = repo.findById(id).get();
-		p.setMaidExtraChargePerMember(maidExtraChargePerMember);
-		repo.save(p);
-		return "Updated record...";
-	}
-
-	@PutMapping("/maidupdate_experience/{id}/{experience}")
+	@PutMapping("/maidupdate_experience/{id}/{experience}") // Update MaidExperience
 	public String updateMaid_experience(@PathVariable int id, @PathVariable int experience) {
 		maid p = repo.findById(id).get();
 		p.setMaidExperience(experience);
 		repo.save(p);
-		return "Updated record...";
+		return "Updated record...!!!";
 	}
 
-	@PutMapping("/maidupdate_Images/{id}/{images}")
-	public String updateMaid_experience(@PathVariable int id, @PathVariable Blob images) {
-		maid p = repo.findById(id).get();
-		p.setMaidImages(images);
-		repo.save(p);
-		return "Updated record...";
-	}
-
-	@DeleteMapping("/maiddelete/{id}")
+	@DeleteMapping("/maiddelete/{id}") // Delete Maid Using ID
 	public String deleteMaid(@PathVariable int id) {
 		repo.deleteById(id);
 		return id + "Deleted";
 	}
 
-	@PostMapping("/CheckLogin")
+	@PostMapping("/CheckLogin") // Maid Log In
 	public maid checklog(@RequestBody maid c) {
 		try {
 			return repo.checkLoginMaid(c.getMaidEmailId(), c.getMaidPassword());
@@ -208,7 +202,7 @@ public class Maid_Controller {
 		}
 	}
 
-	@PutMapping("/changepassword/{id}/{pass}")
+	@PutMapping("/changepassword/{id}/{pass}") // Change PassWord
 	public String MaidFind(@PathVariable int id, @PathVariable String pass) {
 		try {
 			if (id == repo.findById(id).get().getMaidId()) {
@@ -221,11 +215,11 @@ public class Maid_Controller {
 		} catch (Exception e) {
 			System.out.println("plz enter valid credentials");
 		}
-		return "plz enter valid credentials";
+		return "plz enter valid credentials...!!!";
 
 	}
 
-	@PutMapping("/forgotpassword/{id}/{pass1}/{pass2}")
+	@PutMapping("/forgotpassword/{id}/{pass1}/{pass2}") // Forget PassWord
 	public String MaidFind2(@PathVariable int id, @PathVariable String pass1, @PathVariable String pass2) {
 		try {
 			if (id == repo.findById(id).get().getMaidId() && pass1.equals(repo.findById(id).get().getMaidPassword())) {
@@ -238,7 +232,7 @@ public class Maid_Controller {
 		} catch (Exception e) {
 			System.out.println("plz enter valid credentials");
 		}
-		return "plz enter valid credentials..........";
+		return "plz enter valid credentials...!!!";
 
 	}
 

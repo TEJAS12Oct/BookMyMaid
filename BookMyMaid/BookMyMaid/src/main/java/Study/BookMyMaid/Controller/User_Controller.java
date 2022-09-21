@@ -1,6 +1,5 @@
 package Study.BookMyMaid.Controller;
 
-import java.sql.Blob;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,42 +20,41 @@ import Study.BookMyMaid.Repository.User_Repository;
 @CrossOrigin
 @RestController
 @Controller
-@RequestMapping(path = "/user")
+@RequestMapping(path = "/user") // Maps HTTP Requests To Handler Methods Of REST Controllers
 public class User_Controller {
 
-	@Autowired
+	@Autowired // Right Dependency Is Assigned By The Spring Container.
 	User_Repository repo;
 
-//  Need for admin	
-	@GetMapping("/userlist")
+	@GetMapping("/userlist") // List Of All User
 	public List<user> showList() {
 		List<user> list = repo.findAll();
-		System.out.println("List delivered................");
+		System.out.println("List delivered...!!!");
 		return list;
 	}
 
-	@PostMapping("/userinsert")
+	@PostMapping("/userinsert") // Insert User
 	public String addUser(@RequestBody user c) {
 		user u1 = new user(c.getUserId(), c.getUserName(), c.getUserUsername(), c.getUserPassword(), c.getUserGender(),
 				c.getUserFamilyMembers(), c.getUserRooms(), c.getUserMobileNo(), c.getUserEmailId(), c.getUserAddress(),
-				c.getUserCity(), c.getUserPincode(), c.getUserAdharCard(), c.getUserImages());
+				c.getUserCity(), c.getUserPincode(), c.getUserAdharCard());
 		repo.save(u1);
-		return "Successfully User Inserted..";
+		return "Successfully User Inserted...!!!";
 	}
 
-	@GetMapping("/userfind/{id}")
+	@GetMapping("/userfind/{id}") // Find User By ID
 	public user MaidFind(@PathVariable int id) {
 		user p = repo.findById(id).get();
-		System.out.println("Specific user................");
+		System.out.println("Specific user...!!!");
 		return p;
 	}
 
-	@GetMapping("/userfindbyname/{name}")
+	@GetMapping("/userfindbyname/{name}") // Find User By Name
 	public List<user> f3(@PathVariable("name") String username) {
 		List<user> list = null;
 		try {
 			list = repo.findByUsername(username);
-			System.out.println("fetched.........");
+			System.out.println("fetched...!!!");
 			return list;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -65,11 +63,28 @@ public class User_Controller {
 
 	}
 
+	@PostMapping("/userupdate/{userId}") // User Update By UserID
+	public user updateUser(@RequestBody user c, @PathVariable int userId) {
+		user u = repo.findById(userId).get();
+		u.setUserName(c.getUserName());
+		u.setUserUsername(c.getUserUsername());
+		u.setUserPassword(c.getUserPassword());
+		u.setUserFamilyMembers(c.getUserFamilyMembers());
+		u.setUserRooms(c.getUserRooms());
+		u.setUserMobileNo(c.getUserMobileNo());
+		u.setUserEmailId(c.getUserEmailId());
+		u.setUserPassword(c.getUserPassword());
+		u.setUserAddress(c.getUserAddress());
+		u.setUserCity(c.getUserCity());
+		u.setUserPincode(c.getUserPincode());
+		return null;
+	}
+
 	@PutMapping("/userupdate/{id}/{userusername}/{UserFamilyMembers}/{userRooms}/{userMobileNo}/{userEmailId}/{userAddress}/{userCity}/{userPincode}/{userImages}")
 	public String UpdateUser(@PathVariable int id, @PathVariable String userusername,
 			@PathVariable int UserFamilyMembers, @PathVariable int userRooms, @PathVariable String userMobileNo,
 			@PathVariable String userEmailId, @PathVariable String userAddress, @PathVariable String userCity,
-			@PathVariable String userPincode, @PathVariable Blob images) {
+			@PathVariable String userPincode) {
 		user p = repo.findById(id).get();
 		p.setUserUsername(userusername);
 		p.setUserFamilyMembers(UserFamilyMembers);
@@ -79,66 +94,51 @@ public class User_Controller {
 		p.setUserAddress(userAddress);
 		p.setUserCity(userCity);
 		p.setUserPincode(userPincode);
-		p.setUserImages(images);
 		repo.save(p);
-		return "Updated record...";
+		return "Updated record...!!!";
 	}
 
-	@PostMapping("/userupdate")
-	public user updateUser(@RequestBody user c) {
-		return repo.checkLoginUser(c.getUserId(), c.getUserName() , c.getUserUsername(), c.getUserPassword(),
-				c.getUserFamilyMembers(), c.getUserRooms(), c.getUserMobileNo(), c.getUserEmailId(), c.getUserAddress(),
-				c.getUserCity(), c.getUserPincode());
-	}
-	
-//	@PostMapping("/userupdate")
-//	public user updateUser(@RequestBody user c) {
-//		return repo.checkLoginUser(c.getUserId(), c.getUserUsername(), c.getUserFamilyMembers(), c.getUserRooms(),
-//				c.getUserMobileNo(), c.getUserEmailId(), c.getUserAddress(), c.getUserCity(), c.getUserPincode(),
-//				c.getUserImages());
-//	}
-
-	@PutMapping("/userupdate/{id}/{name}")
+	@PutMapping("/userupdate/{id}/{name}") // Update User Name
 	public String updateUserName(@PathVariable int id, @PathVariable String name) {
 		user p = repo.findById(id).get();
 		p.setUserName(name);
 		repo.save(p);
-		return "Updated record...";
+		return "Updated record...!!!";
 	}
 
-	@PutMapping("/userupdateusername/{id}/{username}")
+	@PutMapping("/userupdateusername/{id}/{username}") // Update User UserName
 	public String updateUser_User_Name(@PathVariable int id, @PathVariable String username) {
 		user p = repo.findById(id).get();
 		p.setUserUsername(username);
 		repo.save(p);
-		return "Updated record...";
+		return "Updated record...!!!";
 	}
 
-	@PutMapping("/userupdatepassword/{id}/{password}")
+	@PutMapping("/userupdatepassword/{id}/{password}") // Update User PassWord
 	public String updateUser_Password(@PathVariable int id, @PathVariable String password) {
 		user p = repo.findById(id).get();
 		p.setUserPassword(password);
 		repo.save(p);
-		return "Updated record...";
+		return "Updated record...!!!";
 	}
 
-	@PutMapping("/userupdatemobileno/{id}/{mobileNo}")
+	@PutMapping("/userupdatemobileno/{id}/{mobileNo}") // Update User Mobile No
 	public String updateUser_Mobile_No(@PathVariable int id, @PathVariable String mobileNo) {
 		user p = repo.findById(id).get();
 		p.setUserMobileNo(mobileNo);
 		repo.save(p);
-		return "Updated record...";
+		return "Updated record...!!!";
 	}
 
-	@PutMapping("/userupdateemailid/{id}/{emailId}")
+	@PutMapping("/userupdateemailid/{id}/{emailId}") // // Update User Email ID
 	public String updateUser_Email_Id(@PathVariable int id, @PathVariable String emailId) {
 		user p = repo.findById(id).get();
 		p.setUserEmailId(emailId);
 		repo.save(p);
-		return "Updated record...";
+		return "Updated record...!!!";
 	}
 
-	@PutMapping("/userupdateaddress/{id}/{address}")
+	@PutMapping("/userupdateaddress/{id}/{address}") // Update User Address
 	public String updateUser_Address(@PathVariable int id, @PathVariable String address) {
 		user p = repo.findById(id).get();
 		p.setUserAddress(address);
@@ -146,31 +146,31 @@ public class User_Controller {
 		return "Updated record...";
 	}
 
-	@PutMapping("/userupdatecity/{id}/{city}")
+	@PutMapping("/userupdatecity/{id}/{city}") // Update User City
 	public String updateUser_City(@PathVariable int id, @PathVariable String city) {
 		user p = repo.findById(id).get();
 		p.setUserCity(city);
 		repo.save(p);
-		return "Updated record...";
+		return "Updated record...!!!";
 	}
 
-	@PutMapping("/userupdatepincode/{id}/{pincode}")
+	@PutMapping("/userupdatepincode/{id}/{pincode}") // Update User Pincode
 	public String updateUser_Pincode(@PathVariable int id, @PathVariable String pincode) {
 		user p = repo.findById(id).get();
 		p.setUserPincode(pincode);
 		repo.save(p);
-		return "Updated record...";
+		return "Updated record...!!!";
 	}
 
-	@PutMapping("/userupdateuserrooms/{id}/{userRooms}")
+	@PutMapping("/userupdateuserrooms/{id}/{userRooms}") // Update UserRooms
 	public String updateUser_user_rooms(@PathVariable int id, @PathVariable int userRooms) {
 		user p = repo.findById(id).get();
 		p.setUserRooms(userRooms);
 		repo.save(p);
-		return "Updated record...";
+		return "Updated record...!!!";
 	}
 
-	@PutMapping("/userupdatefamilymembers/{id}/{userFamilyMembers}")
+	@PutMapping("/userupdatefamilymembers/{id}/{userFamilyMembers}") // Update FamilyMembers
 	public String updateMaid_family_members(@PathVariable int id, @PathVariable int userFamilyMembers) {
 		user p = repo.findById(id).get();
 		p.setUserFamilyMembers(userFamilyMembers);
@@ -178,29 +178,13 @@ public class User_Controller {
 		return "Updated record...";
 	}
 
-	@PutMapping("/userupdateimages/{id}/{images}")
-	public String updateMaid_experience(@PathVariable int id, @PathVariable Blob images) {
-		user p = repo.findById(id).get();
-		p.setUserImages(images);
-		repo.save(p);
-		return "Updated record...";
-	}
-
-//  Need for admin
-	@DeleteMapping("/userdelete/{id}")
+	@DeleteMapping("/userdelete/{id}") // Delete User
 	public String deleteUser(@PathVariable int id) {
 		repo.deleteById(id);
 		return id + "Deleted";
 	}
 
-//	@GetMapping("/checkloginforuser/{userEmailId}/{userPassword}")
-//	public user checkLogin(String userEmailId, String userPassword) {
-//		user c = repo.checkLoginUser(userEmailId, userPassword);
-//		return c;
-//
-//	}
-
-	@PostMapping("/CheckLogin")
+	@PostMapping("/CheckLogin") // User Log In
 	public user checklog(@RequestBody user c) {
 		try {
 			return repo.checkLoginUser(c.getUserEmailId(), c.getUserPassword());
@@ -210,7 +194,7 @@ public class User_Controller {
 		}
 	}
 
-	@PutMapping("/changepassword/{id}/{pass}")
+	@PutMapping("/changepassword/{id}/{pass}") // User Change PassWord
 	public String UserPass1(@PathVariable int id, @PathVariable String pass) {
 		try {
 			if (id == repo.findById(id).get().getUserId()) {
@@ -223,11 +207,11 @@ public class User_Controller {
 		} catch (Exception e) {
 			System.out.println("plz enter valid credentials");
 		}
-		return "plz enter valid credentials";
+		return "plz enter valid credentials...!!!";
 
 	}
 
-	@PutMapping("/forgotpassword/{id}/{pass1}/{pass2}")
+	@PutMapping("/forgotpassword/{id}/{pass1}/{pass2}") // User Forget PassWord
 	public String UserPass2(@PathVariable int id, @PathVariable String pass1, @PathVariable String pass2) {
 		try {
 			if (id == repo.findById(id).get().getUserId() && pass1.equals(repo.findById(id).get().getUserPassword())) {
@@ -240,7 +224,7 @@ public class User_Controller {
 		} catch (Exception e) {
 			System.out.println("plz enter valid credentials");
 		}
-		return "plz enter valid credentials..........";
+		return "plz enter valid credentials...!!!";
 	}
 
 }

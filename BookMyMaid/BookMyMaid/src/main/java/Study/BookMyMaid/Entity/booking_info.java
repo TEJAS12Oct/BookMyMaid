@@ -1,11 +1,11 @@
 package Study.BookMyMaid.Entity;
 
 import java.sql.Date;
-import java.sql.Time;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,35 +40,29 @@ public class booking_info {
 	@Column(name = "monthCharges")
 	private int monthCharges;
 
-	@JsonFormat(pattern = "HH:MM:SS")
 	@Column(name = "maidTimeSlots")
-	private Time maidTimeSlots;
+	private String maidTimeSlots;
 
-	@Column(name = "maidHolidays")
-	private int maidHolidays;
-
-	@OneToOne(cascade = CascadeType.MERGE)
+	// The FetchType. EAGER tells Hibernate to get all elements of a relationship
+	// when selecting the root entity.
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "maidId")
-	maid MaidBooking;
+	maid maidId;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
-	user Userbooking;
+	user userId;
 
-	@OneToOne(cascade = CascadeType.MERGE)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "servicesId")
 	services Services;
-
-//	@ManyToOne(fetch = FetchType.EAGER)
-//	@JoinColumn(name="user_id")
-//	private user user;
 
 	public booking_info() {
 		super();
 	}
 
 	public booking_info(int bookingInfoId, Date maidBookingDate, Date startDate, Date endDate, int monthCharges,
-			Time maidTimeSlots, int maidHolidays) {
+			String maidTimeSlots) {
 		super();
 		this.bookingInfoId = bookingInfoId;
 		this.maidBookingDate = maidBookingDate;
@@ -76,22 +70,7 @@ public class booking_info {
 		this.endDate = endDate;
 		this.monthCharges = monthCharges;
 		this.maidTimeSlots = maidTimeSlots;
-		this.maidHolidays = maidHolidays;
-	}
 
-	public booking_info(int bookingInfoId, Date maidBookingDate, Date startDate, Date endDate, int monthCharges,
-			Time maidTimeSlots, int maidHolidays, maid maidBooking, user userbooking, services services) {
-		super();
-		this.bookingInfoId = bookingInfoId;
-		this.maidBookingDate = maidBookingDate;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.monthCharges = monthCharges;
-		this.maidTimeSlots = maidTimeSlots;
-		this.maidHolidays = maidHolidays;
-		MaidBooking = maidBooking;
-		Userbooking = userbooking;
-		Services = services;
 	}
 
 	public int getBookingInfoId() {
@@ -134,36 +113,28 @@ public class booking_info {
 		this.monthCharges = monthCharges;
 	}
 
-	public Time getMaidTimeSlots() {
+	public String getMaidTimeSlots() {
 		return maidTimeSlots;
 	}
 
-	public void setMaidTimeSlots(Time maidTimeSlots) {
+	public void setMaidTimeSlots(String maidTimeSlots) {
 		this.maidTimeSlots = maidTimeSlots;
 	}
 
-	public int getMaidHolidays() {
-		return maidHolidays;
+	public maid getMaidId() {
+		return maidId;
 	}
 
-	public void setMaidHolidays(int maidHolidays) {
-		this.maidHolidays = maidHolidays;
+	public void setMaidId(maid maidId) {
+		this.maidId = maidId;
 	}
 
-	public maid getMaidBooking() {
-		return MaidBooking;
+	public user getUserId() {
+		return userId;
 	}
 
-	public void setMaidBooking(maid maidBooking) {
-		MaidBooking = maidBooking;
-	}
-
-	public user getUserbooking() {
-		return Userbooking;
-	}
-
-	public void setUserbooking(user userbooking) {
-		Userbooking = userbooking;
+	public void setUserId(user userId) {
+		this.userId = userId;
 	}
 
 	public services getServices() {
@@ -178,8 +149,7 @@ public class booking_info {
 	public String toString() {
 		return "booking_info [bookingInfoId=" + bookingInfoId + ", maidBookingDate=" + maidBookingDate + ", startDate="
 				+ startDate + ", endDate=" + endDate + ", monthCharges=" + monthCharges + ", maidTimeSlots="
-				+ maidTimeSlots + ", maidHolidays=" + maidHolidays + ", MaidBooking=" + MaidBooking + ", Userbooking="
-				+ Userbooking + ", Services=" + Services + "]";
+				+ maidTimeSlots + "]";
 	}
 
 }

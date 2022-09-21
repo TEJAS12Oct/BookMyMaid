@@ -21,47 +21,48 @@ import Study.BookMyMaid.Repository.Services_Repository;
 @CrossOrigin
 @RestController
 @Controller
-@RequestMapping(path = "/services")
+@RequestMapping(path = "/services") // Maps HTTP Requests To Handler Methods Of REST Controllers
 public class Services_Controller {
 
-	@Autowired
+	@Autowired // Right Dependency Is Assigned By The Spring Container.
 	Services_Repository repo;
 
-	@GetMapping("/serviceslist")
+	@GetMapping("/serviceslist") // List OF All Seervices
 	public List<services> showList() {
-		try{List<services> list = repo.findAll();
-		System.out.println("List delivered................");
-		return list;}
-		catch(Exception e) {
+		try {
+			List<services> list = repo.findAll();
+			System.out.println("List delivered...!!!");
+			return list;
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 
-	@PostMapping("/servicesinsert")
+	@PostMapping("/servicesinsert") // Insert Services
 	public String addServices(@RequestBody services c) {
 		services m1 = new services(c.getServicesId(), c.getServicesName(), c.getBaseCharges());
 		repo.save(m1);
-		return "Successfully Inserted..";
+		return "Successfully Inserted...!!!";
 	}
 
-	@PutMapping("/servicesupdate/{id}/{name}")
+	@PutMapping("/servicesupdate/{id}/{name}") // Service Update Using Name
 	public String updateUserName(@PathVariable int id, @PathVariable String name) {
 		services p = repo.findById(id).get();
 		p.setServicesName(name);
 		repo.save(p);
-		return "Updated record...";
+		return "Updated record...!!!";
 	}
 
-	@PutMapping("/servicesupdate/{id}/{baseCharges}")
+	@PutMapping("/servicesupdate/{id}/{baseCharges}") // // Service Update Using Base Charges
 	public String updateServiceBaseCharges(@PathVariable int id, @PathVariable int baseCharges) {
 		services p = repo.findById(id).get();
 		p.setBaseCharges(baseCharges);
 		repo.save(p);
-		return "Updated record...";
+		return "Updated record...!!!";
 	}
 
-	@DeleteMapping("/servicesdelete")
+	@DeleteMapping("/servicesdelete") // Service Delete
 	public String deleteServices(@RequestParam int id) {
 		repo.deleteById(id);
 		return id + " Deleted";

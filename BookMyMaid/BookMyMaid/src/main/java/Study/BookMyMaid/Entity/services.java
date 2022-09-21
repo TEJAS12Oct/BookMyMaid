@@ -30,6 +30,10 @@ public class services {
 	@Column(name = "baseCharges")
 	private int baseCharges;
 
+	// @JsonIgnore is used to ignore the logical property used in serialization and
+	// deserialization.
+	// orphanRemoval=true is specified the disconnected Address instance is
+	// automatically removed
 	@OneToMany(mappedBy = "servicesId", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonIgnore
 	private List<maid> maid = new ArrayList<>();
@@ -37,9 +41,6 @@ public class services {
 	@OneToMany(mappedBy = "Services", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<booking_info> booking_info = new ArrayList<>();
-
-//	@ManyToMany(mappedBy = "services", cascade = CascadeType.ALL)
-//	private List<maid> maid1 = new ArrayList()<>();
 
 	public services() {
 		super();
@@ -50,16 +51,6 @@ public class services {
 		this.servicesId = servicesId;
 		this.servicesName = servicesName;
 		this.baseCharges = baseCharges;
-	}
-
-	public services(int servicesId, String servicesName, int baseCharges, List<Study.BookMyMaid.Entity.maid> maid,
-			List<Study.BookMyMaid.Entity.booking_info> booking_info) {
-		super();
-		this.servicesId = servicesId;
-		this.servicesName = servicesName;
-		this.baseCharges = baseCharges;
-		this.maid = maid;
-		this.booking_info = booking_info;
 	}
 
 	public int getServicesId() {
@@ -105,7 +96,7 @@ public class services {
 	@Override
 	public String toString() {
 		return "services [servicesId=" + servicesId + ", servicesName=" + servicesName + ", baseCharges=" + baseCharges
-				+ ", maid=" + maid + ", booking_info=" + booking_info + "]";
+				+ "]";
 	}
 
 }

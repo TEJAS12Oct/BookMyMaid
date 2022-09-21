@@ -1,6 +1,5 @@
 package Study.BookMyMaid.Entity;
 
-import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -61,29 +59,27 @@ public class maid {
 	@Column(name = "maidPoliceVerificationCertificate")
 	private String maidPoliceVerificationCertificate;
 
-	@Column(name = "maidExtraChargePerRoom")
-	private int maidExtraChargePerRoom;
-
-	@Column(name = "maidExtraChargePerMember")
-	private int maidExtraChargePerMember;
+	@Column(name = "monthCharges")
+	private int monthCharges;
 
 	@Column(name = "maidExperience")
 	private int maidExperience;
-
-	@Lob
-	@Column(name = " maidImages")
-	private Blob maidImages;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "services_id")
 	private services servicesId;
 
+	// The FetchType.LAZY tells Hibernate to only fetch the related entities from
+	// the database when you use the relationship.
+
+	// CascadeType.ALL is that the persistence will propagate (cascade) all
+	// EntityManager operations
 	@OneToMany(mappedBy = "maid", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<maid_review> maid_review = new ArrayList<>();
 
-	@OneToMany(mappedBy = "MaidBooking", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-
+	@OneToMany(mappedBy = "maidId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<booking_info> booking_info = new ArrayList<>();
 
 	public maid() {
@@ -98,8 +94,7 @@ public class maid {
 
 	public maid(int maidId, String maidName, String maidUsername, String maidPassword, int maidAge, String maidMobileNo,
 			String maidEmailId, String maidAddress, String maidCity, String maidPincode, String maidAdharCard,
-			String maidPoliceVerificationCertificate, int maidExtraChargePerRoom, int maidExtraChargePerMember,
-			int maidExperience) {
+			String maidPoliceVerificationCertificate, int monthCharges, int maidExperience) {
 		super();
 		this.maidId = maidId;
 		this.maidName = maidName;
@@ -113,17 +108,14 @@ public class maid {
 		this.maidPincode = maidPincode;
 		this.maidAdharCard = maidAdharCard;
 		this.maidPoliceVerificationCertificate = maidPoliceVerificationCertificate;
-		this.maidExtraChargePerRoom = maidExtraChargePerRoom;
-		this.maidExtraChargePerMember = maidExtraChargePerMember;
+		this.monthCharges = monthCharges;
 		this.maidExperience = maidExperience;
 	}
 
-	public maid(int maidId, String maidName, String maidUsername, String maidPassword, int maidAge, String maidMobileNo,
+	public maid(String maidName, String maidUsername, String maidPassword, int maidAge, String maidMobileNo,
 			String maidEmailId, String maidAddress, String maidCity, String maidPincode, String maidAdharCard,
-			String maidPoliceVerificationCertificate, int maidExtraChargePerRoom, int maidExtraChargePerMember,
-			int maidExperience, Blob maidImages) {
+			String maidPoliceVerificationCertificate, int monthCharges, int maidExperience) {
 		super();
-		this.maidId = maidId;
 		this.maidName = maidName;
 		this.maidUsername = maidUsername;
 		this.maidPassword = maidPassword;
@@ -135,38 +127,8 @@ public class maid {
 		this.maidPincode = maidPincode;
 		this.maidAdharCard = maidAdharCard;
 		this.maidPoliceVerificationCertificate = maidPoliceVerificationCertificate;
-		this.maidExtraChargePerRoom = maidExtraChargePerRoom;
-		this.maidExtraChargePerMember = maidExtraChargePerMember;
+		this.monthCharges = monthCharges;
 		this.maidExperience = maidExperience;
-		this.maidImages = maidImages;
-	}
-
-	public maid(int maidId, String maidName, String maidUsername, String maidPassword, int maidAge, String maidMobileNo,
-			String maidEmailId, String maidAddress, String maidCity, String maidPincode, String maidAdharCard,
-			String maidPoliceVerificationCertificate, int maidExtraChargePerRoom, int maidExtraChargePerMember,
-			int maidExperience, Blob maidImages, services servicesId,
-			List<Study.BookMyMaid.Entity.maid_review> maid_review,
-			List<Study.BookMyMaid.Entity.booking_info> booking_info) {
-		super();
-		this.maidId = maidId;
-		this.maidName = maidName;
-		this.maidUsername = maidUsername;
-		this.maidPassword = maidPassword;
-		this.maidAge = maidAge;
-		this.maidMobileNo = maidMobileNo;
-		this.maidEmailId = maidEmailId;
-		this.maidAddress = maidAddress;
-		this.maidCity = maidCity;
-		this.maidPincode = maidPincode;
-		this.maidAdharCard = maidAdharCard;
-		this.maidPoliceVerificationCertificate = maidPoliceVerificationCertificate;
-		this.maidExtraChargePerRoom = maidExtraChargePerRoom;
-		this.maidExtraChargePerMember = maidExtraChargePerMember;
-		this.maidExperience = maidExperience;
-		this.maidImages = maidImages;
-		this.servicesId = servicesId;
-		this.maid_review = maid_review;
-		this.booking_info = booking_info;
 	}
 
 	public int getMaidId() {
@@ -265,22 +227,6 @@ public class maid {
 		this.maidPoliceVerificationCertificate = maidPoliceVerificationCertificate;
 	}
 
-	public int getMaidExtraChargePerRoom() {
-		return maidExtraChargePerRoom;
-	}
-
-	public void setMaidExtraChargePerRoom(int maidExtraChargePerRoom) {
-		this.maidExtraChargePerRoom = maidExtraChargePerRoom;
-	}
-
-	public int getMaidExtraChargePerMember() {
-		return maidExtraChargePerMember;
-	}
-
-	public void setMaidExtraChargePerMember(int maidExtraChargePerMember) {
-		this.maidExtraChargePerMember = maidExtraChargePerMember;
-	}
-
 	public int getMaidExperience() {
 		return maidExperience;
 	}
@@ -289,12 +235,12 @@ public class maid {
 		this.maidExperience = maidExperience;
 	}
 
-	public Blob getMaidImages() {
-		return maidImages;
+	public int getMonthCharges() {
+		return monthCharges;
 	}
 
-	public void setMaidImages(Blob maidImages) {
-		this.maidImages = maidImages;
+	public void setMonthCharges(int monthCharges) {
+		this.monthCharges = monthCharges;
 	}
 
 	public services getServicesId() {
@@ -327,11 +273,8 @@ public class maid {
 				+ ", maidPassword=" + maidPassword + ", maidAge=" + maidAge + ", maidMobileNo=" + maidMobileNo
 				+ ", maidEmailId=" + maidEmailId + ", maidAddress=" + maidAddress + ", maidCity=" + maidCity
 				+ ", maidPincode=" + maidPincode + ", maidAdharCard=" + maidAdharCard
-				+ ", maidPoliceVerificationCertificate=" + maidPoliceVerificationCertificate
-				+ ", maidExtraChargePerRoom=" + maidExtraChargePerRoom + ", maidExtraChargePerMember="
-				+ maidExtraChargePerMember + ", maidExperience=" + maidExperience + ", maidImages=" + maidImages
-				+ ", servicesId=" + servicesId + ", maid_review=" + maid_review + ", booking_info=" + booking_info
-				+ "]";
+				+ ", maidPoliceVerificationCertificate=" + maidPoliceVerificationCertificate + ", monthCharges="
+				+ monthCharges + ", maidExperience=" + maidExperience + "]";
 	}
 
 }

@@ -24,10 +24,10 @@ import Study.BookMyMaid.Repository.User_Repository;
 @CrossOrigin
 @RestController
 @Controller
-@RequestMapping(path = "/BookingInfo")
+@RequestMapping(path = "/BookingInfo") // Maps HTTP Requests To Handler Methods Of REST Controllers
 public class Booking_Info_Controller {
 
-	@Autowired
+	@Autowired // Right Dependency Is Assigned By The Spring Container.
 	Booking_Info_Repository birepo;
 
 	@Autowired
@@ -39,41 +39,43 @@ public class Booking_Info_Controller {
 	@Autowired
 	Services_Repository sRepo;
 
-	@GetMapping("/getallbookings")
+	@GetMapping("/getallbookings") // List Of All Booking Display
 	public List<booking_info> getAll() {
 		List<booking_info> list = birepo.findAll();
-		System.out.println("List delivered................");
+		System.out.println("List delivered...!!!");
 		return list;
 
 	}
 
-	@PostMapping("/insertbooking")
-	public String addbookinginfo(@RequestBody booking_info bi) {		
-		booking_info b = new booking_info(bi.getBookingInfoId(), bi.getMaidBookingDate(), bi.getStartDate(),
-				bi.getEndDate(), bi.getMonthCharges(), bi.getMaidTimeSlots(), bi.getMaidHolidays(), bi.getMaidBooking(),
-				bi.getUserbooking(), bi.getServices());
-		birepo.save(b);
-		return "Succesfully Inserted..";
-
-	}
-
-	@PostMapping("/insertbooking/{maidId}/{user_id}/{servicesId}")
+	@PostMapping("/insertbooking/{maidId}/{user_id}/{servicesId}") // Insert Booking Using post Mapping
 	public String addbookinginfo1(@RequestBody booking_info bi, @PathVariable int maidId, @PathVariable int user_id,
 			@PathVariable int servicesId) {
+
 		maid m = maidRepo.findById(maidId).get();
 		user u = userRepo.findById(user_id).get();
 		services s = sRepo.findById(servicesId).get();
-		bi.setMaidBooking(m);
-		bi.setUserbooking(u);
+
+		bi.setMonthCharges(m.getMonthCharges());
+		bi.setMaidId(m);
+		bi.setUserId(u);
 		bi.setServices(s);
 		birepo.save(bi);
-		return "Succesfully Inserted..";
+		System.out.println(bi);
+		return "Succesfully Inserted...!!!";
+	}
+
+	@GetMapping("/bookinginfobyid/{id}") // Find Booking Info Of User By Using userId
+	public List<booking_info> f5(@PathVariable("id") int userId) {
+		user u = userRepo.findById(userId).get();
+		List<booking_info> list = birepo.findByUserId(u);
+		return list;
 
 	}
 
-	@GetMapping("/bookinginfobyid/{id}")
-	public List<booking_info> f5(@PathVariable("id") int userId) {
-		List<booking_info> list = birepo.findByUser_id(userId);
+	@GetMapping("/bookinginfoformaid/{id}") // Find Booking Info OF Maid By Using maidId
+	public List<booking_info> getBookingsByMaid(@PathVariable("id") int maidId) {
+		maid m = maidRepo.findById(maidId).get();
+		List<booking_info> list = birepo.findByMaidId(m);
 		return list;
 
 	}

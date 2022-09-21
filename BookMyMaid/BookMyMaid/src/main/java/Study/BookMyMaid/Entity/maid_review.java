@@ -27,7 +27,9 @@ public class maid_review {
 	@Column(name = "maidComments")
 	private String maidComments;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	// The FetchType. EAGER tells Hibernate to get all elements of a relationship
+	// when selecting the root entity.
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "maidId")
 	private maid maid;
 
@@ -99,7 +101,7 @@ public class maid_review {
 	@Override
 	public String toString() {
 		return "maid_review [maidReviewId=" + maidReviewId + ", maidRating=" + maidRating + ", maidComments="
-				+ maidComments + ", maid=" + maid + ", userBook=" + userBook + "]";
+				+ maidComments + "]";
 	}
 
 }

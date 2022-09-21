@@ -22,10 +22,10 @@ import Study.BookMyMaid.Repository.User_Repository;
 @CrossOrigin
 @RestController
 @Controller
-@RequestMapping(path = "/MaidReview")
+@RequestMapping(path = "/MaidReview") // Maps HTTP Requests To Handler Methods Of REST Controllers
 public class Maid_Review_Controller {
 
-	@Autowired
+	@Autowired // Right Dependency Is Assigned By The Spring Container.
 	Maid_Review_Repository mrrepo;
 
 	@Autowired
@@ -34,29 +34,34 @@ public class Maid_Review_Controller {
 	@Autowired
 	User_Repository userRepo;
 
-	@GetMapping("/maidreviewlist")
+	@GetMapping("/maidreviewlist") // List Of All Maid Review (Feedback)
 	public List<maid_review> showList() {
-		List<maid_review> list = mrrepo.findAll();
-		System.out.println("List delivered................");
-		return list;
+		try {
+			List<maid_review> list = mrrepo.findAll();
+			System.out.println("List delivered...!!!");
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
-	@PostMapping("/maidreviewinsert")
+	@PostMapping("/maidreviewinsert") // Insert Of Maid Review (Feedback)
 	public String addServices(@RequestBody maid_review c) {
 		maid_review m1 = new maid_review(c.getMaidReviewId(), c.getMaidRating(), c.getMaidComments(), c.getMaid(),
 				c.getUserBook());
 		mrrepo.save(m1);
-		return "Successfully Inserted..";
+		return "Successfully Inserted...!!!";
 	}
 
-	@PostMapping("/maidreviewinsert/{maidId}/{user_id}")
+	@PostMapping("/maidreviewinsert/{maidId}/{user_id}") // Insert Of Maid Review (Feedback)
 	public String addServices1(@RequestBody maid_review c, @PathVariable int maidId, @PathVariable int user_id) {
 		maid m = maidRepo.findById(maidId).get();
 		user u = userRepo.findById(user_id).get();
 		c.setMaid(m);
 		c.setUserBook(u);
 		mrrepo.save(c);
-		return "Successfully Inserted..";
+		return "Successfully Inserted...!!!";
 	}
 
 }
