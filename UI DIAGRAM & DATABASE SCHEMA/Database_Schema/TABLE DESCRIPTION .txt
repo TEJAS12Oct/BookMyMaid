@@ -9,15 +9,13 @@
 | maid_city                            | varchar(255) | YES  |     | NULL    |                |
 | maid_email_id                        | varchar(255) | YES  |     | NULL    |                |
 | maid_experience                      | int          | YES  |     | NULL    |                |
-| maid_extra_charge_per_member         | int          | YES  |     | NULL    |                |
-| maid_extra_charge_per_room           | int          | YES  |     | NULL    |                |
-| maid_images                          | longblob     | YES  |     | NULL    |                |
 | maid_mobile_no                       | varchar(255) | YES  |     | NULL    |                |
 | maid_name                            | varchar(255) | YES  |     | NULL    |                |
 | maid_password                        | varchar(255) | YES  |     | NULL    |                |
 | maid_pincode                         | varchar(255) | YES  |     | NULL    |                |
 | maid_police_verification_certificate | varchar(255) | YES  |     | NULL    |                |
 | maid_username                        | varchar(255) | YES  |     | NULL    |                |
+| month_charges                        | int          | YES  |     | NULL    |                |
 | services_id                          | int          | YES  | MUL | NULL    |                |
 +--------------------------------------+--------------+------+-----+---------+----------------+
 
@@ -32,7 +30,6 @@
 | user_email_id       | varchar(255) | YES  |     | NULL    |                |
 | user_family_members | int          | YES  |     | NULL    |                |
 | user_gender         | varchar(255) | YES  |     | NULL    |                |
-| user_images         | longblob     | YES  |     | NULL    |                |
 | user_mobile_no      | varchar(255) | YES  |     | NULL    |                |
 | user_name           | varchar(255) | YES  |     | NULL    |                |
 | user_password       | varchar(255) | YES  |     | NULL    |                |
@@ -51,20 +48,19 @@
 +---------------+--------------+------+-----+---------+----------------+
 
 4. desc booking_info;
-+-------------------+------+------+-----+---------+----------------+
-| Field             | Type | Null | Key | Default | Extra          |
-+-------------------+------+------+-----+---------+----------------+
-| booking_info_id   | int  | NO   | PRI | NULL    | auto_increment |
-| end_date          | date | YES  |     | NULL    |                |
-| maid_booking_date | date | YES  |     | NULL    |                |
-| maid_holidays     | int  | YES  |     | NULL    |                |
-| maid_time_slots   | time | YES  |     | NULL    |                |
-| month_charges     | int  | YES  |     | NULL    |                |
-| start_date        | date | YES  |     | NULL    |                |
-| maid_id           | int  | YES  | MUL | NULL    |                |
-| services_id       | int  | YES  | MUL | NULL    |                |
-| user_id           | int  | YES  | MUL | NULL    |                |
-+-------------------+------+------+-----+---------+----------------+
++-------------------+--------------+------+-----+---------+----------------+
+| Field             | Type         | Null | Key | Default | Extra          |
++-------------------+--------------+------+-----+---------+----------------+
+| booking_info_id   | int          | NO   | PRI | NULL    | auto_increment |
+| end_date          | date         | YES  |     | NULL    |                |
+| maid_booking_date | date         | YES  |     | NULL    |                |
+| maid_time_slots   | varchar(255) | YES  |     | NULL    |                |
+| month_charges     | int          | YES  |     | NULL    |                |
+| start_date        | date         | YES  |     | NULL    |                |
+| services_id       | int          | YES  | MUL | NULL    |                |
+| maid_id           | int          | YES  | MUL | NULL    |                |
+| user_id           | int          | YES  | MUL | NULL    |                |
++-------------------+--------------+------+-----+---------+----------------+
 
 5. desc maid_review;
 +----------------+--------------+------+-----+---------+----------------+

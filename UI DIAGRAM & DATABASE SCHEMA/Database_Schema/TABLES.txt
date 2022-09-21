@@ -2,11 +2,11 @@ DATABASE TABLES INFORMATION
 NAME , PRIMARY & FORIEGN KEY 
   
 1. maid 
-   maid_id AUTO_INCREMENT (PRIMARY KEY) , maid_name , maid_username , maid_password , maid_age , 
-   maid_mobile_no , maid_email_id , maid_address , maid_city , maid_pincode , 
-   maid_adhar_card , maid_police_verification_certificate , 
-   maid_extra_charge_per_room , maid_extra_charge_per_member ,
-   maid_experience , maid_images ,
+   maid_id AUTO_INCREMENT (PRIMARY KEY) , 
+   maid_address , maid_adhar_card , maid_age , maid_age , 
+   maid_city , maid_email_id , maid_experience , maid_mobile_no , maid_name , 
+   maid_password , maid_pincode , maid_police_verification_certificate
+   maid_username , month_charges ,
    foreign key (services_id) references services (services_id), 
    
 
@@ -20,7 +20,7 @@ NAME , PRIMARY & FORIEGN KEY
 
 4. booking_info 
    booking_info_id AUTO_INCREMENT (PRIMARY KEY) , 
-   maid_booking_date , end_date , start_date , month_charges , maid_time_slots ,maid_holidays ,
+   maid_booking_date , end_date , start_date , month_charges , maid_time_slots 
    foreign key (maid_id) references maid (maid_id), 
    foreign key (user_id) references user (user_id) , 
    foreign key (services_id) references services (services_id) 
