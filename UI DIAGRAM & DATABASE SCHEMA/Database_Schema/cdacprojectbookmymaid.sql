@@ -39,7 +39,7 @@ CREATE TABLE `booking_info` (
   CONSTRAINT `FKiadidx6fnhdpi96i5xtraucp6` FOREIGN KEY (`services_id`) REFERENCES `services` (`services_id`),
   CONSTRAINT `FKlxf7mokjochrs8eocc6fpu2pi` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
   CONSTRAINT `FKte4gxinejrmufu3mvssayu18y` FOREIGN KEY (`maid_id`) REFERENCES `maid` (`maid_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,7 +48,7 @@ CREATE TABLE `booking_info` (
 
 LOCK TABLES `booking_info` WRITE;
 /*!40000 ALTER TABLE `booking_info` DISABLE KEYS */;
-INSERT INTO `booking_info` VALUES (1,'2022-10-16','2022-08-21','10 am to 12 pm',4000,'2022-09-16',1,5,1),(2,'2022-10-26','2022-08-21','12 pm to 2 pm',3500,'2022-09-27',3,4,2),(3,'2022-10-27','2022-08-21','8 am to 10 am',4000,'2022-09-27',1,5,2);
+INSERT INTO `booking_info` VALUES (1,'2022-10-16','2022-08-21','10 am to 12 pm',4000,'2022-09-16',1,5,1),(2,'2022-10-26','2022-08-21','12 pm to 2 pm',3500,'2022-09-27',3,4,2),(3,'2022-10-27','2022-08-21','8 am to 10 am',4000,'2022-09-27',1,5,2),(4,'2022-10-27','2022-08-22','12 pm to 2 pm',4000,'2022-09-27',1,5,3),(5,'2022-10-29','2022-08-22','10 am to 12 pm',3500,'2022-09-29',3,3,3),(6,'2022-10-31','2022-08-22','12 pm to 2 pm',4000,'2022-09-30',2,1,1),(7,'2022-10-31','2022-08-22','8 am to 10 am',4500,'2022-09-30',3,4,1),(8,'2022-10-19','2022-08-22','10 am to 12 pm',3500,'2022-09-19',3,4,4),(9,'2022-09-28','2022-08-22','10 am to 12 pm',4000,'2022-09-28',2,1,4),(10,'2022-10-25','2022-08-22','2 pm to 4 pm',4000,'2022-09-25',1,6,4),(11,'2022-10-25','2022-08-22','10 am to 12 pm',4000,'2022-09-25',2,1,2),(12,'2022-10-21','2022-08-22','8 am to 10 am',4500,'2022-09-20',2,2,3);
 /*!40000 ALTER TABLE `booking_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,7 +109,7 @@ CREATE TABLE `maid_review` (
   KEY `FKp1lh2qbpfc8j45xkb1oxoe8ob` (`user_id`),
   CONSTRAINT `FKfonlmx2djdov6iha82g9jx6l8` FOREIGN KEY (`maid_id`) REFERENCES `maid` (`maid_id`),
   CONSTRAINT `FKp1lh2qbpfc8j45xkb1oxoe8ob` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,7 +118,7 @@ CREATE TABLE `maid_review` (
 
 LOCK TABLES `maid_review` WRITE;
 /*!40000 ALTER TABLE `maid_review` DISABLE KEYS */;
-INSERT INTO `maid_review` VALUES (1,'Good Services','3',5,1);
+INSERT INTO `maid_review` VALUES (1,'Good Services','3',5,1),(2,'Good','3',3,3),(3,'Good In Service','4',2,3),(4,'Good Service','3',2,4);
 /*!40000 ALTER TABLE `maid_review` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -169,7 +169,7 @@ CREATE TABLE `user` (
   `user_rooms` int DEFAULT NULL,
   `user_username` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -178,7 +178,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Wakad','221670966616','Pune','Tejas@gmail.com',4,'Male','7420871899','Tejas Jawale','Tejas@123','422010',3,'Tejas'),(2,'Aakurdi','879632154015','Pune','Vedant@gmail.com',4,'Male','8669547233','Vedant Chalse','Vedant@123','453216',5,'Vedant'),(3,'Pimpari Chinchwad','748596145263','Pune','Lukesh@gmail.com',4,'Male','4586957896','Lukesh Erande','Lukesh@123','457896',3,'Lukesh');
+INSERT INTO `user` VALUES (1,'Wakad','221670966616','Pune','Tejas@gmail.com',4,'Male','7420871899','Tejas Jawale','Tejas@123','422010',3,'Tejas'),(2,'Aakurdi','879632154015','Pune','Vedant@gmail.com',4,'Male','8669547233','Vedant Chalse','Vedant@123','453216',5,'Vedant'),(3,'Pimpari Chinchwad','748596145263','Pune','Lukesh@gmail.com',4,'Male','4586957896','Lukesh Erande','Lukesh@123','457896',3,'Lukesh'),(4,'Baner','748596456595','Pune','Yash@gmail.com',5,'Male','7459863215','Yash Jagale','Yash@123','478321',4,'Yash');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -191,4 +191,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-21 20:47:21
+-- Dump completed on 2022-09-22  9:53:32
