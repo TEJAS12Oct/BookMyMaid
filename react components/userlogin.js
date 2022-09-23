@@ -84,7 +84,6 @@ function Userlogin() {
                     <br />
                     <br />
                     <br />
-                    <br />
                     
                     <h2>USER SIGN IN</h2> <hr />
                     <div className="form-group" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
