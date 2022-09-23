@@ -34,12 +34,23 @@ public class User_Controller {
 	}
 
 	@PostMapping("/userinsert") // Insert User
-	public String addUser(@RequestBody user c) {
+	public String addUser(@RequestBody user c)
+	{
+		String s="";
+		try
+		{
 		user u1 = new user(c.getUserId(), c.getUserName(), c.getUserUsername(), c.getUserPassword(), c.getUserGender(),
 				c.getUserFamilyMembers(), c.getUserRooms(), c.getUserMobileNo(), c.getUserEmailId(), c.getUserAddress(),
 				c.getUserCity(), c.getUserPincode(), c.getUserAdharCard());
-		repo.save(u1);
-		return "Successfully User Inserted...!!!";
+		repo.save(u1);		
+		s="Successfully User Inserted...!!!";
+		}
+		catch(Exception e)
+		{
+			s="Something wrong happened..."+e;
+			
+		}
+		return s;
 	}
 
 	@GetMapping("/userfind/{id}") // Find User By ID

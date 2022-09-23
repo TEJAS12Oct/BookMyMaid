@@ -32,20 +32,30 @@ public class Maid_Controller {
 	Services_Repository serviceRepo;
 
 	@GetMapping("/maidlist") // List Of All Maids
-	public List<maid> showList() {
+	public List<maid> showList() 
+	{
 		List<maid> list = repo.findAll();
 		System.out.println("List delivered...!!!");
 		return list;
 	}
 
 	@PostMapping("/maidinsert") // Insert Maid
-	public String addMaid(@RequestBody maid c) {
-		maid m1 = new maid(c.getMaidName(), c.getMaidUsername(), c.getMaidPassword(), c.getMaidAge(),
-				c.getMaidMobileNo(), c.getMaidEmailId(), c.getMaidAddress(), c.getMaidCity(), c.getMaidPincode(),
-				c.getMaidAdharCard(), c.getMaidPoliceVerificationCertificate(), c.getMonthCharges(),
-				c.getMaidExperience());
-		repo.save(m1);
-		return "Successfully Inserted...!!!";
+	public String addMaid(@RequestBody maid c)
+	{
+		String s="";
+		try {
+			maid m1 = new maid(c.getMaidName(), c.getMaidUsername(), c.getMaidPassword(), c.getMaidAge(),
+					c.getMaidMobileNo(), c.getMaidEmailId(), c.getMaidAddress(), c.getMaidCity(), c.getMaidPincode(),
+					c.getMaidAdharCard(), c.getMaidPoliceVerificationCertificate(), c.getMonthCharges(),
+					c.getMaidExperience());
+			repo.save(m1);
+			s= "Successfully Inserted...!!!";
+		}
+		catch(Exception e)
+		{
+			s="Something wrong happened..."+e;
+		}
+		return s;		
 	}
 
 	@PostMapping("/maidinsert/{servicesId}") // Insert Maid
