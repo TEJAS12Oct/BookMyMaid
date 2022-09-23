@@ -1,0 +1,8 @@
+{
+    "cat":[
+       { "servicesName" : "washing"},
+       {"servicesName" : "cooking"},
+       {"servicesName" : "cleaning"}
+
+    ]
+}
