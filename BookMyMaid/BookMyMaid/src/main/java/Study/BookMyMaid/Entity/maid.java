@@ -15,7 +15,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.lang.NonNull;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import net.bytebuddy.utility.nullability.NeverNull;
 
 @Entity()
 @Table(name = "maid")
@@ -26,43 +30,56 @@ public class maid {
 	@Column(name = "maidId")
 	private int maidId;
 
-	@Column(name = "maidName")
+	
+	@Column(name = "maidName",nullable=false)
 	private String maidName;
 
-	@Column(name = "maidUsername")
+
+	@Column(name = "maidUsername",nullable=false)
 	private String maidUsername;
 
-	@Column(name = "maidPassword")
+
+	@Column(name = "maidPassword",nullable=false)
 	private String maidPassword;
 
-	@Column(name = "maidAge")
+	
+	@Column(name = "maidAge",nullable=false)
 	private int maidAge;
 
-	@Column(name = "maidMobileNo")
+	
+	@Column(name = "maidMobileNo",nullable=false)
 	private String maidMobileNo;
 
-	@Column(name = "maidEmailId")
+
+	@Column(name = "maidEmailId",nullable=false)
 	private String maidEmailId;
 
-	@Column(name = "maidAddress")
+
+	@Column(name = "maidAddress",nullable=false)
 	private String maidAddress;
 
-	@Column(name = "maidCity")
+	
+	@Column(name = "maidCity",nullable=false)
 	private String maidCity;
 
-	@Column(name = "maidPincode")
+
+	@Column(name = "maidPincode",nullable=false)
 	private String maidPincode;
 
-	@Column(name = "maidAdharCard")
+
+	@Column(name = "maidAdharCard",nullable=false)
 	private String maidAdharCard;
 
-	@Column(name = "maidPoliceVerificationCertificate")
+	
+	@Column(name = "maidPoliceVerificationCertificate",nullable=false)
 	private String maidPoliceVerificationCertificate;
 
-	@Column(name = "monthCharges")
+	
+	@Column(name = "monthCharges",nullable=false)
 	private int monthCharges;
 
-	@Column(name = "maidExperience")
+
+	@Column(name = "maidExperience",nullable=false)
 	private int maidExperience;
 
 	@ManyToOne(fetch = FetchType.EAGER)

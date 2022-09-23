@@ -15,6 +15,8 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import net.bytebuddy.utility.nullability.NeverNull;
+
 @Entity()
 @Table(name = "user")
 public class user {
@@ -24,40 +26,52 @@ public class user {
 	@Column(name = "userId")
 	private int userId;
 
-	@Column(name = "userName")
+	
+	@Column(name = "userName",nullable=false)
 	private String userName;
 
-	@Column(name = "userUsername")
+	
+	@Column(name = "userUsername",nullable=false)
 	private String userUsername;
 
-	@Column(name = "userPassword")
+	
+	@Column(name = "userPassword",nullable=false)
 	private String userPassword;
 
-	@Column(name = "userGender")
+	
+	@Column(name = "userGender",nullable=false)
 	private String userGender;
 
-	@Column(name = "userFamilyMembers")
+	
+	@Column(name = "userFamilyMembers",nullable=false)
 	private int userFamilyMembers;
 
-	@Column(name = "userRooms")
+	
+	@Column(name = "userRooms",nullable=false)
 	private int userRooms;
 
-	@Column(name = "userMobileNo")
+	
+	@Column(name = "userMobileNo",nullable=false)
 	private String userMobileNo;
 
-	@Column(name = "userEmailId")
+	
+	@Column(name = "userEmailId",nullable=false)
 	private String userEmailId;
 
-	@Column(name = "userAddress")
+
+	@Column(name = "userAddress",nullable=false)
 	private String userAddress;
 
-	@Column(name = "userCity")
+	
+	@Column(name = "userCity",nullable=false)
 	private String userCity;
 
-	@Column(name = "userPincode")
+	
+	@Column(name = "userPincode",nullable=false)
 	private String userPincode;
 
-	@Column(name = "userAdharCard")
+	
+	@Column(name = "userAdharCard",nullable=false)
 	private String userAdharCard;
 
 	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
