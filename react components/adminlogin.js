@@ -50,10 +50,7 @@ function Adminlogin() {
             alert("invalid credintials");
         }
 
-
-
     }
-
 
     return (
         <center>

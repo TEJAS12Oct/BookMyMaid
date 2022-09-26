@@ -38,8 +38,8 @@ export default class ViewFeedback extends React.Component {
                                 <th>feedback ID</th>
                                 <th>Rating</th>
                                 <th>Comment</th>
-                                <th>Maid ID</th>
-                                <th>Customer ID</th>
+                                <th>Maid Name</th>
+                                <th>Customer Name</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -50,8 +50,8 @@ export default class ViewFeedback extends React.Component {
                                             <td>{feedbacks.maidReviewId}</td>
                                             <td>{feedbacks.maidRating}</td>
                                             <td>{feedbacks.maidComments}</td>
-                                            <td>{feedbacks.maid?.maidId}</td>
-                                            <td>{feedbacks.userBook?.userId}</td>
+                                            <td>{feedbacks.maid?.maidName}</td>
+                                            <td>{feedbacks.userBook?.userName}</td>
 
                                         </tr>)
                                     })

@@ -100,7 +100,7 @@ function Userlogin() {
                     </div>
                     <br />
                 </form>
-                <h4 style={{ color: 'green' }}>New User Register Here...!!!</h4>
+                <h4 style={{ color: 'green' }}>NEW USER REGISTER HERE...!!!</h4>
                 <h5> < a href="/registerCustomer">Register As Customer  </a> </h5>
 
             </div>

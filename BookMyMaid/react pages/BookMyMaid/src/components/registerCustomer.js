@@ -220,7 +220,7 @@ class RegisterCustomer extends React.Component {
       })
     };
 
-    if(ValidateForm(this.state.errors)){
+    if (ValidateForm(this.state.errors)) {
       fetch('http://localhost:8080/user/userinsert', user)
         .then(res => {
           if (res.status == 200) {
@@ -234,7 +234,7 @@ class RegisterCustomer extends React.Component {
           }
         })
     }
-     
+
 
 
 
@@ -249,6 +249,9 @@ class RegisterCustomer extends React.Component {
     return (
       <div className="container-fluid" style={{ backgroundImage: `url(${register})`, height: '1000px', backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundSize: 'cover' }}>
 
+        <div class="nav">&nbsp;&nbsp;
+          <button><a href="AdminHome">BACK</a></button>
+        </div>
         {<style>{'body{background-color:#DFDFDE}'}</style>}
         <div id="form" class="row" className="mb-3 pageheading" >
           <hr />
@@ -265,7 +268,7 @@ class RegisterCustomer extends React.Component {
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
                 <InputGroup className="mb-2">
-                  <Input type="text" name="userName" placeholder="Full Name" onChange={this.handleChange}  ValidateForm />
+                  <Input type="text" name="userName" placeholder="Full Name" onChange={this.handleChange} ValidateForm />
                   {errors.userName.length > 0 && <span className='error'>{errors.userName}</span>}
                 </InputGroup>
               </div>
@@ -283,7 +286,7 @@ class RegisterCustomer extends React.Component {
               <div>
                 <label style={{ display: 'flex', justifyContent: 'left', alignItems: 'left' }}>Family Members : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                   <InputGroup className="mb-3" style={{ display: 'flex', justifyContent: 'left', alignItems: 'left' }} onChange={(event) => { this.userFamilyMembers(event) }} >
-                    <input type="number" name="userFamilyMembers" placeholder="Enter no." onChange={this.handleChange}noValidate required />
+                    <input type="number" name="userFamilyMembers" placeholder="Enter no." onChange={this.handleChange} noValidate required />
 
                   </InputGroup>
                 </label>
@@ -349,7 +352,7 @@ class RegisterCustomer extends React.Component {
               <div>
                 <label style={{ display: 'flex', justifyContent: 'left', alignItems: 'left' }}>Password : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                   <InputGroup className="mb-3" style={{ display: 'flex', justifyContent: 'left', alignItems: 'left' }} onChange={(event) => { this.userPassword(event) }}>
-                    <Input type="password" name="userPassword" placeholder="Password" onChange={this.handleChange} ValidateForm required/>
+                    <Input type="password" name="userPassword" placeholder="Password" onChange={this.handleChange} ValidateForm required />
                     {errors.userPassword.length > 0 && <span className='error'>{errors.userPassword}</span>}
                   </InputGroup>
                 </label>

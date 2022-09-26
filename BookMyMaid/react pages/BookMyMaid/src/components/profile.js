@@ -152,8 +152,8 @@ class Profile extends React.Component {
     else {
       console.error('Invalid Form')
     }
-    
-    const userId= (JSON.parse(localStorage.getItem('loggedincustomer')).userId);
+
+    const userId = (JSON.parse(localStorage.getItem('loggedincustomer')).userId);
 
     const requestOption = {
       method: 'post',
@@ -165,25 +165,25 @@ class Profile extends React.Component {
 
       },
       "body": JSON.stringify({
-        userId: this.state.userId ? this.state.userId :(JSON.parse(localStorage.getItem('loggedincustomer')).userId),
-        userName: this.state.userName ? this.state.userName :(JSON.parse(localStorage.getItem('loggedincustomer')).userName),
-        userUsername: this.state.userUsername ? this.state.userUsername :(JSON.parse(localStorage.getItem('loggedincustomer')).userUsername),
-        userGender: this.state.userGender ? this.state.userGender :(JSON.parse(localStorage.getItem('loggedincustomer')).userGender),
-        userPassword:this.state.userPassword ? this.state.userPassword : (JSON.parse(localStorage.getItem('loggedincustomer')).userPasword),
-        userFamilyMembers:this.state.userFamilyMembers ? this.state.userFamilyMembers : (JSON.parse(localStorage.getItem('loggedincustomer')).userFamilyMembers),
-        userRooms: this.state.userRooms ? this.state.userRooms :(JSON.parse(localStorage.getItem('loggedincustomer')).userRooms),
-        userMobileNo: this.state.userMobileNo ? this.state.userMobileNo :(JSON.parse(localStorage.getItem('loggedincustomer')).userMobileNo),
-        userEmailId: this.state.userEmailId ? this.state.userEmailId :(JSON.parse(localStorage.getItem('loggedincustomer')).userEmailId),
-        userAddress:this.state.userAddress ? this.state.userAddress : this.state.userAddress,
-        userCity: this.state.userCity ? this.state.userCity :(JSON.parse(localStorage.getItem('loggedincustomer')).userCity),
-        userPincode: this.state.userPincode ? this.state.userPincode :(JSON.parse(localStorage.getItem('loggedincustomer')).userPincode),
-        userAdharCard:this.state.userAdharCard ? this.state.userAdharCard : (JSON.parse(localStorage.getItem('loggedincustomer')).userAdharCard),
+        userId: this.state.userId ? this.state.userId : (JSON.parse(localStorage.getItem('loggedincustomer')).userId),
+        userName: this.state.userName ? this.state.userName : (JSON.parse(localStorage.getItem('loggedincustomer')).userName),
+        userUsername: this.state.userUsername ? this.state.userUsername : (JSON.parse(localStorage.getItem('loggedincustomer')).userUsername),
+        userGender: this.state.userGender ? this.state.userGender : (JSON.parse(localStorage.getItem('loggedincustomer')).userGender),
+        userPassword: this.state.userPassword ? this.state.userPassword : (JSON.parse(localStorage.getItem('loggedincustomer')).userPasword),
+        userFamilyMembers: this.state.userFamilyMembers ? this.state.userFamilyMembers : (JSON.parse(localStorage.getItem('loggedincustomer')).userFamilyMembers),
+        userRooms: this.state.userRooms ? this.state.userRooms : (JSON.parse(localStorage.getItem('loggedincustomer')).userRooms),
+        userMobileNo: this.state.userMobileNo ? this.state.userMobileNo : (JSON.parse(localStorage.getItem('loggedincustomer')).userMobileNo),
+        userEmailId: this.state.userEmailId ? this.state.userEmailId : (JSON.parse(localStorage.getItem('loggedincustomer')).userEmailId),
+        userAddress: this.state.userAddress ? this.state.userAddress : this.state.userAddress,
+        userCity: this.state.userCity ? this.state.userCity : (JSON.parse(localStorage.getItem('loggedincustomer')).userCity),
+        userPincode: this.state.userPincode ? this.state.userPincode : (JSON.parse(localStorage.getItem('loggedincustomer')).userPincode),
+        userAdharCard: this.state.userAdharCard ? this.state.userAdharCard : (JSON.parse(localStorage.getItem('loggedincustomer')).userAdharCard),
 
       })
     };
 
-    fetch('http://localhost:8080/user/userupdate/'+userId, requestOption)
-    // fetch('http://localhost:8080/user/userinsert', requestOption)
+    fetch('http://localhost:8080/user/userupdate/' + userId, requestOption)
+      // fetch('http://localhost:8080/user/userinsert', requestOption)
       .then(res => {
         if (res.status === 200) {
           alert("updated successfully");
@@ -207,6 +207,7 @@ class Profile extends React.Component {
     return (
 
       <div className="container-fluid" style={{ backgroundImage: `url(${personal})`, height: '1000px', backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundSize: 'cover', color: 'black' }} >
+        
         <div class="nav">&nbsp;&nbsp;
           <button><a href="CustomerHome">BACK</a></button>
         </div>

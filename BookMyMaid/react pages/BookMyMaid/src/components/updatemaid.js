@@ -200,6 +200,9 @@ class UpdateMaid extends React.Component {
 
     return (
       <div className="container-fluid" style={{ backgroundImage: `url(${personal})`, height: '1000px', backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundSize: 'cover', color: 'black' }} >
+        <div class="nav">&nbsp;&nbsp;
+          <button><a href="AdminHome">BACK</a></button>
+        </div>
         {<style>{'body{background-color:#DFDFDE}'}</style>}
         <div class="nav">&nbsp;&nbsp;
           <button><a href="AdminHome">BACK</a></button>

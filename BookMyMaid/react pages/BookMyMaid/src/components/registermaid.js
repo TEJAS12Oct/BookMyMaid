@@ -206,6 +206,9 @@ class MaidRegistration extends React.Component {
     console.log(this.state.services.map(ser => ser.servicesId))
     return (
       <div className="container-fluid" style={{ backgroundImage: `url(${register})`, height: '1000px', backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundSize: 'cover' }}>
+        <div class="nav">&nbsp;&nbsp;
+          <button><a href="AdminHome">BACK</a></button>
+        </div>
         {<style>{'body{background-color:#DFDFDE}'}</style>}
         <div id="form" class="row" className="mb-3 pageheading" >
           <h2>Register As Maid</h2>

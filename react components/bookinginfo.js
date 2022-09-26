@@ -36,9 +36,9 @@ export default class BookingInfo extends React.Component {
                         <thead>
                             <tr>
                                 <th>Booking ID</th>
-                                <th>Maid ID</th>
+                                <th>Maid Name</th>
                                 {/* <th>User ID</th> */}
-                                <th>Service ID</th>
+                                <th>Service Name</th>
                                 <th>Booking Date</th>
                                 <th>Start Date</th>
                                 <th>End Date</th>

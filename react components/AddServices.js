@@ -13,10 +13,6 @@ class AddServices extends React.Component {
       servicesName: '',
     }
   }
-
-
-
-
   Handler = (event) => {
     this.setState({ [event.target.name]: event.target.value })
   }
@@ -33,10 +29,6 @@ class AddServices extends React.Component {
         console.log(error)
       })
   }
-
-
-
-  
   render() {
 
     const { servicesId, baseCharges, servicesName, } = this.state;
@@ -52,13 +44,13 @@ class AddServices extends React.Component {
 
           <br />
           <label>Service Id:</label>
-          <input type="text" name="servicesId" value={servicesId} onChange={this.Handler} required="true"></input>   <br />
+          <input type="text" name="servicesId" value={servicesId} onChange={this.Handler} />   <br />
           <br />
           <label>Base Charges:</label>
-          <input type="number"  name="baseCharges" value={baseCharges} onChange={this.Handler} required="true"></input><br />
+          <input type="number" name="baseCharges" value={baseCharges} onChange={this.Handler} /><br />
           <br />
           <label>Service Name:</label>
-          <input type="text" name="servicesName" value={servicesName} onChange={this.Handler} required="true"></input>   <br />
+          <input type="text" name="servicesName" value={servicesName} onChange={this.Handler} />   <br />
           <br />
           <Button onClick={this.submitdata} color="success" >SUBMIT</Button>
         </div>

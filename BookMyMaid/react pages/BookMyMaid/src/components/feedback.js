@@ -7,7 +7,7 @@ import E from './Images/E.jpg';
 
 class Feedback extends React.Component {
 
-  
+
   constructor(props) {
     super(props);
 
@@ -67,8 +67,8 @@ class Feedback extends React.Component {
 
   submit = (event) => {
     event.preventDefault();
-    const userId= (JSON.parse(localStorage.getItem('loggedincustomer')).userId);
-    const maidId= (JSON.parse(localStorage.getItem('bookedmaid')).maidId)
+    const userId = (JSON.parse(localStorage.getItem('loggedincustomer')).userId);
+    const maidId = (JSON.parse(localStorage.getItem('bookedmaid')).maidId)
 
 
     const requestOption =
@@ -84,7 +84,7 @@ class Feedback extends React.Component {
       "body": JSON.stringify({
         comment: this.state.comment,
         custBook: {
-          
+
           userId: (JSON.parse(localStorage.getItem('loggedincustomer')).userId),
           userName: (JSON.parse(localStorage.getItem('loggedincustomer'))?.userName),
           userUsername: (JSON.parse(localStorage.getItem('loggedincustomer')).userUsername),
@@ -100,14 +100,14 @@ class Feedback extends React.Component {
           userAdharCard: (JSON.parse(localStorage.getItem('loggedincustomer')).userAdharCard),
         },
         maidRating: this.state.maidRating,
-        maidComments:this.state.maidComments
+        maidComments: this.state.maidComments
       })
 
     };
 
 
 
-    fetch('http://localhost:8080/MaidReview/maidreviewinsert/'+maidId+'/'+userId, requestOption)
+    fetch('http://localhost:8080/MaidReview/maidreviewinsert/' + maidId + '/' + userId, requestOption)
       .then(res => {
         if (res.status == 200) {
           alert("Feedback Submitted Successfully !");
@@ -127,6 +127,9 @@ class Feedback extends React.Component {
 
     return (
       <div className="container-fluid" style={{ backgroundImage: `url(${E})`, height: '695px', backgroundRepeat: "no-repeat", backgroundSize: 'cover' }}>
+        <div class="nav">&nbsp;&nbsp;
+          <button><a href="CustomerHome">BACK</a></button>
+        </div>
         <h2 ><b>Welcome {JSON.parse(localStorage.getItem('loggedincustomer'))?.userName}</b></h2>
 
         <div style={{ display: this.state.flag ? 'none' : 'block' }} className="nav nav-tabs" >
