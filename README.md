@@ -14,15 +14,15 @@ BookMyMaid is an online platform that enables homeowners to hire domestic help. 
 <h2> How To Run project at your end?? follow the steps...</h2>
 
 <p>
-1.Clone the repository or download the zip file of a project.
-2.Open the BookMyMaid folder having subfolders BookMyMaid and react pages.
-3.open that BookMyMaid spring project in your STS and change necessary details of your MySql in applicationproperties and hibernate.cfg.xml 
-4.Create database in your MySql.
-5.Run springbootapplication.
-6.Open react pages folder in VScode
-7.Run command "npm start" on terminal.
-8.Project will start on port 3000
-9.Explore and Enjoyyy!!!
+1.Clone the repository or download the zip file of a project.<br/>
+2.Open the BookMyMaid folder having subfolders BookMyMaid and react pages.<br/>
+3.open that BookMyMaid spring project in your STS and change necessary details of your MySql in applicationproperties and hibernate.cfg.xml <br/>
+4.Create database in your MySql.<br/>
+5.Run springbootapplication.<br/>
+6.Open react pages folder in VScode<br/>
+7.Run command "npm start" on terminal.<br/>
+8.Project will start on port 3000<br/>
+9.Explore and Enjoyyy!!!<br/>
 </p>
 <hr>
 <h2 align="center"> 💻 Technology Used </h2>
