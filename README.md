@@ -14,7 +14,7 @@ BookMyMaid is an online platform that enables homeowners to hire domestic help. 
 <h2> How To Run project at your end?? follow the steps...</h2>
 
 <p>
-1.Clone the repository using link in git :- https://github.com/TEJAS12Oct/BookMyMaid.git or<br/>Download the zip file of a project.<br/>
+1.Clone the repository using link in git :- https://github.com/TEJAS12Oct/BookMyMaid.git or<br/>   Download the zip file of a project.<br/>
 2.Open the BookMyMaid folder having subfolders BookMyMaid and react pages.<br/>
 3.open that BookMyMaid spring project in your STS and change necessary details of your MySql in applicationproperties and hibernate.cfg.xml <br/>
 4.Create database in your MySql.<br/>
