@@ -48,7 +48,7 @@ BookMyMaid is an online platform that enables homeowners to hire domestic help. 
 	<li>Spring Data JPA</li>
 	<li>Spring Web</li>
 </ol>
-<br/>
+
 <h3>Below Dependencies used in ReactJS:</h3>
 <ol>     
 	<li>bootstrap</li>
@@ -63,6 +63,7 @@ BookMyMaid is an online platform that enables homeowners to hire domestic help. 
  
 <h2 align="center"> Project Contributors </h2>
 <div align="center">
+			<img src="https://contributors-img.web.app/image?repo=TEJAS12Oct/BookMyMaid" />
 <div>
 <div align="center">
 	<i class="bx bx-chevron-right"></i> <a href="https://github.com/TEJAS12Oct">| Tejas J |</a>
