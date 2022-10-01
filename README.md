@@ -68,8 +68,8 @@ BookMyMaid is an online platform that enables homeowners to hire domestic help. 
 <div align="center">
 	<i class="bx bx-chevron-right"></i> <a href="https://github.com/TEJAS12Oct">| Tejas J |</a>
 	<i class="bx bx-chevron-right"></i> <a href="https://github.com/ruchita1997">| Ruchita P |</a>
+	<i class="bx bx-chevron-right"></i> <a href="https://github.com/mayurnigade">| Mayur N |</a>
+	<i class="bx bx-chevron-right"></i> <a href="https://github.com/Atharvab30">| Atharva B |</a>
+	<i class="bx bx-chevron-right"></i> <a href="https://github.com/Akshay177331">| AkshayKumar G|</a>
 	<i class="bx bx-chevron-right"></i> <a href="https://github.com/pankajdesai1309">| Pankaj D |</a>
-<i class="bx bx-chevron-right"></i> <a href="https://github.com/Akshay177331">| AkshayKumar G|</a>
-<i class="bx bx-chevron-right"></i> <a href="https://github.com/Atharvab30">| Atharva B |</a>
-<i class="bx bx-chevron-right"></i> <a href="https://github.com/mayurnigade">| Mayur N |</a>
 </div>  
