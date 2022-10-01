@@ -38,7 +38,6 @@ BookMyMaid is an online platform that enables homeowners to hire domestic help. 
 <img height="40" src="https://github.com/devicons/devicon/blob/master/icons/mysql/mysql-plain.svg">
 </p>
  <hr/>
- <hr>
 <h2>Dependencies Used</h2>
 <h3>Below Dependencies used in Spring Boot:</h3>
 <ol>
