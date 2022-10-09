@@ -16,11 +16,11 @@ BookMyMaid is an online platform that enables homeowners to hire domestic help. 
 <p>
 1.Clone the repository using link in git :- https://github.com/TEJAS12Oct/BookMyMaid.git or<br/>&nbsp;&nbsp;&nbsp;Download the zip file of a project.<br/>
 2.Open the BookMyMaid folder having subfolders BookMyMaid and react pages.<br/>
-3.open that BookMyMaid spring project in your STS and change necessary details of your MySql in applicationproperties and hibernate.cfg.xml <br/>
+3.Open that BookMyMaid SpringBoot project in your STS and change necessary details of your MySql in applicationproperties and hibernate.cfg.xml <br/>
 4.Create database in your MySql.<br/>
 5.Run springbootapplication.<br/>
 6.Open react pages folder in VScode<br/>
-7.cd BookMyMaid<br/>
+7.Change directory by using command "cd BookMyMaid"<br/>
 8.Run command "npm start" on terminal.<br/>
 9.Project will start on port 3000<br/>
 10.Explore and Enjoyyy!!!<br/>
